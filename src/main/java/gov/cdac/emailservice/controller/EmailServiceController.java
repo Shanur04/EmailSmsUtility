@@ -89,7 +89,6 @@ public class EmailServiceController {
 	
 	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}")
 	public ModelAndView emailHomePage(@PathVariable String reqType) {
-		System.out.println("1");
 		return new ModelAndView("MailHome").addAllObjects(mailServiceFactory.getPageData(reqType));
 	}
 	
