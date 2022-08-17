@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2022-03-10T19:01:34 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="admit_card" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="15" bottomMargin="15" uuid="4448419d-c97d-4ad5-a52e-17c6238ee410">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="casbLogoPath2" class="java.lang.String"/>
+	<pageHeader>
+		<band height="812" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="8" width="513" height="25" uuid="ce3c8770-9d07-4a2a-bcfd-7ea3176a0da8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Akshar Unicode" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[अभ्यर्थियों के लिए कोविड-19 निर्देश]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="511" height="210" uuid="2939802d-f238-4408-9f37-a39b05023b57">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Akshar Unicode" size="11"/>
+					<paragraph lineSpacingSize="6.0" rightIndent="0"/>
+				</textElement>
+				<text><![CDATA[1. अभ्यर्थियों को समय-समय पर केंद्र/राज्य सरकारों द्वारा जारी सभी निर्देशों/दिशानिर्देशों का पालन करने का सुझाव दिया जाता है। अभ्यर्थियों को यात्रा अवधि सहित परीक्षा के समयांतराल के दौरान सभी एहतियाती उपायों, जैसे कि फेस कवर/मास्क का उपयोग, बार-बार हाथ साफ करना/धोना, शारीरिक दूरी बनाए रखना, सार्वजनिक स्थानों पर न थूकना और स्वच्छता का सख्त पालन करना होगा।<br><br>                                                                                                 2. अभ्यर्थियों को भारत सरकार के साथ-साथ संबंधित राज्य सरकारों द्वारा जारी कोविड-19 संबंधी परामर्श, जिसमें क्या करें और क्या न करें का पालन करना चाहिए तथा सामाजिक दूरी से संबंधित सभी मानदंडों का अनुपालन करें।<br><br>
+3. सार्वजनिक परिवहन से यात्रा करते समय आरोग्य सेतु ऐप की संस्थापना (इंस्टालेशन) और उपयोग करना अनिवार्य है। अभ्यर्थियों को मुख्य द्वार से प्रवेश करते समय आरोग्य सेतु ऐप पर स्वास्थ्य संबंधी स्थिति का सत्यापन सुनिश्चित करना होगा।<br><br>
+4. अभ्यर्थियों को परीक्षा केंद्रों पर निवारक उपायों के रूप में अपने व्यक्तिगत उपयोग हेतु निम्नलिखित वस्तुओं को लाने की सलाह दी जाती है:-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="292" width="511" height="30" uuid="9e695d72-6fea-4c1b-bf4c-ee1741b900f6"/>
+				<textElement>
+					<font fontName="Akshar Unicode" size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[परीक्षा हॉल में प्रवेश करने से पूर्व]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="317" width="511" height="281" uuid="f8defa9b-5248-4f73-820c-2c2fb58833b6"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Akshar Unicode" size="11"/>
+					<paragraph lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[1. सभी अभ्यर्थियों को परीक्षा केंद्र में जाने से पूर्व  <b>स्व-घोषणा पत्र</b> भरना होगा।<br><br> 2. प्रवेश के समय केंद्र में किसी भी तरह की भीड़ से बचने और सामाजिक दूरी बनाए रखने के लिए अभ्यर्थियों को प्रवेश पत्र पर उल्लिखित रिपोर्टिंग समय के अनुसार अपने परीक्षा केंद्र पर रिपोर्ट करना होगा।<br><br>3.सामाजिक दूरी सुनिश्चित करने के लिए अभ्यर्थियों को कतार में फर्श पर बने निशान पर खड़ा होना है।<br><br>4. अभ्यर्थियों को परीक्षा केंद्र परिसर के बाहर और भीतर सभी अनावश्यक गतिविधियों से बचना होगा।<br><br>5.अभ्यर्थियों को हर समय एक दूसरे से न्यूनतम 6 कदम की दूरी बनाई रखनी होगी। केंद्र सरकार के कर्मचारी द्वारा दिए गए निर्देशों का पालन करें।<br><br>6. परीक्षा केंद्र के कर्मचारी थर्मो-गन का उपयोग करके अभ्यर्थियों के शरीर के तापमान की जांच करेंगे।<br><br>7. अभ्यर्थियों को परीक्षा हॉल में प्रवेश करने से पहले अपने हाथों को साफ करना/धोना है।]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="600" width="511" height="29" uuid="8dedf19b-d4eb-4ebd-a69e-299bf333504e"/>
+				<textElement>
+					<font fontName="Akshar Unicode" size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[परीक्षा के दौरान]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="625" width="511" height="80" uuid="ea60ead6-8cec-4368-b4ff-8df6d1a59874"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Akshar Unicode" size="11"/>
+					<paragraph lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[1. परीक्षा के दौरान अभ्यर्थियों को फेस मास्क लगाना होगा।<br><br>
+
+2. अभ्यर्थियों को पीसी (पर्सनल कंप्यूटर) के उपयोग से पहले और बाद में अपने हाथों को साफ करना है।]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="697" width="511" height="49" uuid="96554613-c5f8-40f0-a137-9597e4293aae"/>
+				<textElement>
+					<font fontName="Akshar Unicode" size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[परीक्षा के बाद]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="722" width="511" height="89" uuid="3a0b6693-8ed7-4823-b140-c83627027ca3"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Akshar Unicode" size="11"/>
+					<paragraph lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[1. शिफ्ट पूरी हो जाने के बाद, अभ्यर्थियों को एक-एक करके व्यवस्थित तरीके से बाहर निकलना होगा।<br><br>
+
+2. अभ्यर्थियों को निरीक्षक से निर्देश की प्रतीक्षा करनी होगी और आदेश दिए जाने तक सीट से नहीं उठना है।]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="213" width="493" height="35" uuid="064217e9-4d41-46bd-97c5-510448a16a43">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Akshar Unicode" size="11"/>
+					<paragraph lineSpacingSize="6.0" rightIndent="0"/>
+				</textElement>
+				<text><![CDATA[(क) व्यक्तिगत हैंड सैनिटाइजर]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="233" width="493" height="35" uuid="5f3b4e7b-b8eb-4fca-b0f0-efa2b5cea4e7">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Akshar Unicode" size="11"/>
+					<paragraph lineSpacingSize="6.0" rightIndent="0"/>
+				</textElement>
+				<text><![CDATA[(ख) व्यक्तिगत पारदर्शी पानी की बोतल]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="251" width="493" height="35" uuid="618d39b1-feda-4cf0-9de0-8dcf7c78aced">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Akshar Unicode" size="11"/>
+					<paragraph lineSpacingSize="6.0" rightIndent="0"/>
+				</textElement>
+				<text><![CDATA[(ग) मास्क]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

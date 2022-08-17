@@ -1,0 +1,226 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ICG : Seat Allocation</title>
+<link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+<link th:href="@{/plugins/tables/css/datatable/dataTables.bootstrap4.min.css}" rel="stylesheet">	
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link rel="stylesheet"  th:href="@{/css/bootstrap-multiselect1.css}" type="text/css"/>
+<style>
+.dropdown-menu {
+	min-width: 100%;
+}
+
+
+#loading {
+	background: url('../images/loader.gif') no-repeat center center;
+	background-color: #32323666;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999999;
+}
+
+</style>
+</head>
+<body>
+	<div th:insert="fragments/preloader::preloader"></div>
+		<div th:insert="fragments/header::header"></div>
+		<div th:insert="fragments/sidebar::sidebar"></div>
+		<div class="content-body">
+		 <div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div id="loading"></div> 
+						<div class="card-body">
+                      		<h4 class="card-title">Seat Allocation</h4>
+                      		<div class="default-tab"  id="seatAllocDiv">
+								<div th:replace="fragments/seatAllocationTabs ::seatAllocationTabs"></div>
+									<div class="tab-content custom-content" style="margin-top: 5%;">
+										<div id="citywiseAllocation" class="section" style="height: 150px">
+											<div class="row" style="margin-top: 5px">
+												<div class="col-3">
+									    			<label for="selectPref"> Select Preference:</label> 
+												</div>
+												<div class="col-6">
+													<select class="form-control" id="sameCityPref">
+														<option value="0" selected="selected" disabled="disabled">--Select Preference--</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+													</select>
+												</div>
+											</div>
+											<div class="row" style="margin-top: 10px">
+												<div class="col-3">
+												 	<label for="selectPref"> Select Exam City:</label><br/>												 
+												</div>
+												<div class="col-6">
+													<select class="form-control multilist" id="multiExamCityList" multiple="multiple" > 
+														<option th:value="${examCity.examCityId}" th:text="${examCity.examCityName}" 
+														 th:each="examCity: ${examCityDetails}"></option>
+													</select>
+												</div>
+																									
+									    	</div>
+									    	<div class="row" style="margin-top: 10px;text-align: center;margin-top: 5%">
+									    		<div class="col-3">
+									    			<label > is Overlapping Allowed:</label>
+									    			<input type="checkbox"  id="sameCityOverlap" style="text-align: center;"/>
+									    		</div>
+									    		<div class="col-6">
+									    		<div class="form-group" style="text-align: center;">
+													<input type="button" class="btn btn-rounded btn-primary" id="samecityAlloc"
+													value="Allocate ICG Examination Seat"  style="text-align: center;"/>
+												</div></div>
+												<div class="col-3"></div>
+									    	</div>									    	
+										</div>
+										<div id="interCitywiseAllocation" class="section" style="height: 150px">
+										 <div class="row" style="margin-top: 5px">
+												<div class="col-3">
+									    			<label for="selectPref"> Select Preference:</label> 
+												</div>
+												<div class="col-6">
+													<select class="form-control" id="interCityPref">
+														<option value="0" selected="selected" disabled="disabled">--Select Preference--</option>
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+													</select>
+												</div>
+											</div>
+											<div class="row" style="margin-top: 10px">
+												<div class="col-3">
+												 	<label for="selectPref"> Candidate Of City:</label><br/>												 
+												</div>
+												<div class="col-6">
+													<select class="form-control" id="candidateInterCity"> 
+														<option value="0" selected="selected" disabled="disabled">--Select City--</option>
+														<option th:value="${examCity.examCityId}" th:text="${examCity.examCityName}" 
+														 th:each="examCity: ${examCityDetails}"></option>
+													</select>
+												</div>																										
+									    	</div>
+									    	<div class="row" style="margin-top: 10px">
+												<div class="col-3">
+												 	<label for="selectPref"> Moves To:</label><br/>												 
+												</div>
+												<div class="col-6">
+													<select class="form-control" id="movedInterCity"> 
+														<option value="0" selected="selected" disabled="disabled">--Select City--</option>
+														<option th:value="${examCity.examCityId}" th:text="${examCity.examCityName}" 
+														 th:each="examCity: ${examCityDetails}"></option>
+													</select>
+												</div>																										
+									    	</div>
+									    	<br><br>
+									    	<div class="row" style="margin-top: 10px;text-align: center;">
+									    		<div class="col-4"></div>
+									    		<div class="col-4">
+									    		<div class="form-group" style="text-align: center;">
+													<input type="button" class="btn btn-rounded btn-primary" id="intercityAlloc"
+													value="Allocate ICG Examination Seat"  style="text-align: center;"/>
+												</div></div>
+												<div class="col-3"></div>
+									    	</div>											
+										</div>
+										<div id="candidateWiseAllocation" class="section" style="height: 150px">
+											 <div class="alert alert-primary">
+                            					<h5 class="card-title" style="text-decoration: underline;">Notes:<br></h5>
+                            					<h5 > 1. Allocation has been done on first come first server i.e on the basis of payment(or form submission in case of ST/SC) <br>
+                             						  2. If 1st preference haven't available then we will see candidate's 2nd preference if not 2nd then 3rd and so on till 5th preference.<br>
+                             						  3. If all preference hasn't available then we accommodate candidate to the available exam city nearest to his 1st preference<br>
+                             						  4. For starting allocation click on below given button
+                             					</h5>
+                             				 </div><br><br>
+											 <div class="row" style="margin-top: 10px;text-align: center;">
+									    		<div class="col-4"></div>
+									    		<div class="col-4">
+									    		<div class="form-group" style="text-align: center;">
+													<input type="button" class="btn btn-rounded btn-primary" id="AllCandidateWiseAlloc"
+													value="Allocate ICG Examination Seat"  style="text-align: center;"/>
+												</div></div>
+												<div class="col-3"></div>
+									    	</div>
+										</div>
+										<div id="singleCandidateAllocation" class="section" style="height: 150px">											 
+											<!--  <div class="row" style="margin-top: 10px;text-align: center;"> -->
+									    		<div class="form-group">
+													<input type="text" name="email" id="emailId" 
+															class="form-control input-lg" placeholder="Email"
+															required="required" autofocus="autofocus" />
+												</div>
+												<div class="form-group">
+                									<select class="form-control" id="singleCandidateCity">
+   			          									<option value="0"  disabled="disabled" selected="selected">--Select City--</option>
+   			          									<option th:each="examCity: ${examCityDetails}" th:value="${examCity.examCityId}" th:text="${examCity.examCityName}" ></option>
+   			        								</select>
+   			        							</div>
+   			         							<div class="form-group">
+   		            								<select class="form-control" id="singleCandidateSlot">
+   			         									<option value="0" disabled="disabled" selected="selected">--Select Slot--</option>
+   			         									<option th:each="slot : ${examSlots}" th:value="${slot.examSlotId}" th:text="${slot.examSlotName}"></option>
+   		            								</select>
+                   								</div>
+   			        							<div class="form-group" style="text-align: center;">
+													<input type="button" class="btn btn-rounded btn-primary" id="singleCandidateAllocButton"
+													value="Allocate ICG Examination Seat"  style="text-align: center;"/>
+												</div>
+									    	<!-- </div> -->
+										</div>
+										
+										<div id="candidateWiseFirstDayAllocation" class="section" style="height: 150px">
+											 <div class="alert alert-primary">
+                            					<h5 class="card-title" style="text-decoration: underline;">Notes:<br></h5>
+                            					<h5 > 1. Allocation has been done on first come first server i.e on the basis of payment(or form submission in case of ST/SC) <br>
+                             						  2. If 1st preference haven't available then we will see candidate's 2nd preference if not 2nd then 3rd and so on till 5th preference.<br>
+                             						  3. If all preference hasn't available then we accommodate candidate to the available exam city nearest to his 1st preference<br>
+                             						  4. For starting allocation click on below given button
+                             					</h5>
+                             				 </div><br><br>
+											 <div class="row" style="margin-top: 10px;text-align: center;">
+									    		<div class="col-4"></div>
+									    		<div class="col-4">
+									    		<div class="form-group" style="text-align: center;">
+													<input type="button" class="btn btn-rounded btn-primary" id="candidateWiseFirstDayAllocBTN"
+													value="Allocate ICG Examination Seat"  style="text-align: center;"/>
+												</div></div>
+												<div class="col-3"></div>
+									    	</div>
+										</div>
+									</div>								                              
+                        	</div>
+					 	</div>
+					</div>
+				</div>
+			</div>			     				
+		</div>
+		<div th:insert="fragments/successErrorModels::successErrorModels"></div>
+		<div th:insert="fragments/footer::footer"></div>
+	</div>
+	<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+	<script th:src="@{/plugins/common/common.min.js}"></script>
+	<script th:src="@{/js/custom.min.js}"></script>
+	<script th:src="@{/js/settings.js}"></script>
+	<script th:src="@{/js/gleek.js}"></script>
+	<script th:src="@{/plugins/validation/jquery.validate.min.js}"></script>
+	<script th:src="@{/plugins/validation/jquery.validate-init.js}"></script>
+	<script th:src="@{/plugins/tables/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/plugins/tables/js/datatable/dataTables.bootstrap4.min.js}"></script>		
+	<script th:src="@{/plugins/tables/js/datatable-init/datatable-basic.min.js}"></script>	
+	<script th:src="@{/js/bootstrap-multiselect1.js}"></script>	
+	<script th:src="@{/js/styleSwitcher.js}"></script>
+	<script th:src="@{/js/custom/seatAllocation.js}"></script> 	
+</body>
+</html>

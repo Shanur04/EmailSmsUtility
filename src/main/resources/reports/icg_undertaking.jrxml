@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ICG_hallticket" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="15" bottomMargin="15" uuid="5b3e6b04-0097-4723-9eda-69c3227f823d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="logo1" class="java.lang.String"/>
+	<field name="logo2" class="java.lang.String"/>
+	<field name="candidate_name" class="java.lang.String"/>
+	<field name="fathers_name" class="java.lang.String"/>
+	<field name="mothers_name" class="java.lang.String"/>
+	<field name="dob" class="java.lang.String"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="id_Mark" class="java.lang.String"/>
+	<field name="aadhar_no" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="mobile" class="java.lang.String"/>
+	<field name="candidate_photo" class="java.lang.String"/>
+	<field name="afcat_center" class="java.lang.String"/>
+	<field name="exam_date" class="java.lang.String"/>
+	<field name="reporting_time" class="java.lang.String"/>
+	<field name="exam_time" class="java.lang.String"/>
+	<field name="thumb_impression" class="java.lang.String"/>
+	<field name="signature" class="java.lang.String"/>
+	<field name="registration_no" class="java.lang.String"/>
+	<field name="afcatcenter_address" class="java.lang.String"/>
+	<field name="hallticket_no" class="java.lang.String"/>
+	<field name="exam_slot" class="java.lang.String"/>
+	<field name="centerNameCode" class="java.lang.String"/>
+	<field name="ektStream" class="java.lang.String"/>
+	<field name="oldHallticketno" class="java.lang.String"/>
+	<field name="categoryTitle" class="java.lang.String"/>
+	<field name="landMark" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="796" splitType="Immediate">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="9" width="515" height="40" uuid="529fa9d1-ae5f-4996-8bf4-669600778009"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="13" isBold="true" isUnderline="true"/>
+					<paragraph spacingBefore="10"/>
+				</textElement>
+				<text><![CDATA[CERTIFICATE OF UNDERTAKING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="98" width="515" height="402" uuid="df78391e-c9ca-467a-b976-873db5528d72"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="SansSerif" size="11"/>
+				</textElement>
+				<text><![CDATA[1.      I, ________________________________ son of ________________________ (Names as per application in Capital Letters) understand that my candidature shall be rejected even after declaration of results, if I<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(a)      Am found using unfair means.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(b)      Submit wrong information and documents in application.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(c)      Make any declaration in the application not supported by the documents.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(d)       Fail to submit original and  photocopy of documents during various stages of recruitment.<br><br>
+
+2.      I understand that document verification will be carried out by Indian Coast Guard at multiple stages of recruitment process like Stage I, II, III & IV (as mentioned in the advertisement) and I can be declared as a failed in document verification even if I am declared as pass in document verification at earlier stages or even after induction in Indian Coast Guard.<br><br>3.      I understand that Indian Coast Guard reserves the right to conduct re-assessment of candidates at Stage II and also at any stage of the recruitment process prior issue of appointment letter to avoid impersonation. I understand that my candidature can be cancelled on account of impersonation and the decision of Indian Coast Guard will be final and binding on me in this regard.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="472" width="180" height="20" uuid="51731570-3ca8-42c0-b8db-ac815aea9261"/>
+				<textElement textAlignment="Left">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Signature of Candidate]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="577" width="180" height="23" uuid="52abea73-d272-4b3c-8dcf-aaa2410aaf88"/>
+				<textElement textAlignment="Left">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[(same as uploaded in application)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="457" width="145" height="30" uuid="1a4ba0fe-a407-490a-ad65-5a6767b9391a"/>
+				<text><![CDATA[(                                           )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="472" width="205" height="28" uuid="37c48925-6bfb-4d37-aa2c-8bcacd43069f">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<text><![CDATA[Signature of Parent/ Guardian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="490" width="205" height="28" uuid="7c44c712-f6c0-47a6-ab84-f37f6cd3cad6">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement>
+					<font size="11" isBold="true"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<text><![CDATA[Name of Parent/ Guardian]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="531" width="200" height="1" uuid="f71c0b8d-e0b2-4cae-a6d5-b8d1f401fe11">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="548" width="205" height="52" uuid="2b60250a-1ef4-4b24-bcc7-38b36cefb8bd">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="11"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<text><![CDATA[(Parent’s/ Guardian’s signature is required only if candidate is less than 18 years on the date of application)
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="494" width="80" height="21" uuid="f354ddc5-6b20-439a-9abe-67dbeaab1215"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="513" width="80" height="21" uuid="8b4d8420-73aa-45f3-89f9-768c50dfaaf7"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Batch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="534" width="80" height="21" uuid="0a4dabc0-6a00-486d-a824-6a4b3380f74d"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Post Applied ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="553" width="80" height="21" uuid="e029f82f-6919-4596-827b-8720f1178cf1"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Photo Id No.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="373" y="505" width="142" height="1" uuid="c3850e9c-52f8-45a6-8ff1-0cbd8132e748">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="373" y="525" width="142" height="1" uuid="1c14dcf1-6dbe-4804-b89e-21a76f0bc413">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="408" y="546" width="107" height="1" uuid="cd03769c-2656-45d2-83d6-b86693a14fc5">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="405" y="564" width="110" height="1" uuid="ab550f31-a440-44df-a59e-1a631b9db6d1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</pageHeader>
+</jasperReport>

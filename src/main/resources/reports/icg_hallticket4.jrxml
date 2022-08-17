@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-09-15T12:47:43 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="admit_card" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="15" bottomMargin="15" uuid="4448419d-c97d-4ad5-a52e-17c6238ee410">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="casbLogoPath2" class="java.lang.String"/>
+	<pageHeader>
+		<band height="812" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="8" width="513" height="25" uuid="ce3c8770-9d07-4a2a-bcfd-7ea3176a0da8"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[COVID-19 INSTRUCTIONS FOR CANDIDATES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="511" height="256" uuid="2939802d-f238-4408-9f37-a39b05023b57">
+					<property name="com.jaspersoft.studio.unit.rightIndent" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="SansSerif" size="11"/>
+					<paragraph lineSpacingSize="6.0" rightIndent="0"/>
+				</textElement>
+				<text><![CDATA[1. Candidates are advised to follow all instructions/ guidelines issued by Central/ State Governments from time to time. Candidates are to follow all precautionary measures such as use of face cover/ masks, frequent hand sanitizing/ washing, observing physical distancing, no spitting in public and strict hygiene throughout the duration of exam including travel period.<br><br>                                                                                                 2. Candidates are to abide by all DO'S and DONT'S of COVID-19 advisories issued by Govt of India as well as respective state governments and adhere to all the social distancing norms.<br><br>
+3. Installation & use of Aarogya Setu App is mandatory while travelling by public transport. Candidates are to ensure verification of health status on Aarogya Setu App while entering at the main gate.<br><br>
+4. Candidates are advised to carry the following items for their personal use as precautionary measures at exam centres:-<br>&nbsp;&nbsp;&nbsp;&nbsp;(a) Personal hand sanitizer<br>&nbsp;&nbsp;&nbsp;&nbsp;(b) Personal transparent water bottle<br>&nbsp;&nbsp;&nbsp;&nbsp;(c) Mask]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="301" width="511" height="30" uuid="9e695d72-6fea-4c1b-bf4c-ee1741b900f6"/>
+				<textElement>
+					<font size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Before entering the examination hall]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="327" width="511" height="281" uuid="f8defa9b-5248-4f73-820c-2c2fb58833b6"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="11"/>
+					<paragraph lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[1. All candidates must fill the <b>self-declaration form</b> before proceeding to the exam centre.<br><br> 2. Candidates need to report to their exam centre as per the reporting time mentioned on their admit card only to avoid any crowding at the centre at the time of entry and to maintain social distancing.<br><br>3. Candidates are to stand on the mark made on the floor while in queue to ensure social distancing.<br><br>4. Candidates are to avoid all non-essential movement outside and inside the exam centre premises. No gathering is permitted.<br><br>5. Candidates need to maintain a distance of at least 6 feet from each other at all times. Follow the instructions given by centre staff.<br><br>6. The exam centre staff will check the body temperature of the candidates using a Thermo-Gun.<br><br>7. Candidates are to sanitize/ wash their hands before entering the examination hall.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="571" width="511" height="29" uuid="8dedf19b-d4eb-4ebd-a69e-299bf333504e"/>
+				<textElement>
+					<font size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[During examination
+				
+				]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="597" width="511" height="80" uuid="ea60ead6-8cec-4368-b4ff-8df6d1a59874"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="11"/>
+					<paragraph lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[1. Candidates are to put on face mask during the course of exam.<br><br>
+				
+2. Candidates are to sanitize their hands before and after the use of PC (Personal Computer).]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="661" width="511" height="29" uuid="96554613-c5f8-40f0-a137-9597e4293aae"/>
+				<textElement>
+					<font size="11" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[After examination]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="686" width="511" height="89" uuid="3a0b6693-8ed7-4823-b140-c83627027ca3"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="11"/>
+					<paragraph lineSpacingSize="6.0"/>
+				</textElement>
+				<text><![CDATA[1. On completion of a shift, the candidates will be permitted to move out in an orderly manner one by one.<br><br>
+				
+2. Candidates are to wait for instructions from invigilator and not to get up from seat until advised.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

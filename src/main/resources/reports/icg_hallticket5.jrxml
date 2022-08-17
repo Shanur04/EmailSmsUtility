@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="admit_card" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="15" bottomMargin="15" uuid="4448419d-c97d-4ad5-a52e-17c6238ee410">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="proto" class="java.lang.String"/>
+	<field name="casbLogoPath2" class="java.lang.String"/>
+	<pageHeader>
+		<band height="710" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="510" height="34" uuid="f0f9bad3-a3dc-4f64-9368-930734e9a3cc"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="13" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Protocol for Management of Entry inside the Exam Centre]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" isUsingCache="true" onErrorType="Blank">
+				<reportElement x="0" y="70" width="510" height="640" uuid="bd6c8047-31ec-4b6f-8a43-cd4a5f6db009">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{proto}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+</jasperReport>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2021-09-20T16:26:46 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ICG_hallticket" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="15" bottomMargin="15" uuid="5b3e6b04-0097-4723-9eda-69c3227f823d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="com.jaspersoft.studio.report.description" value=""/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="logo1" class="java.lang.String"/>
+	<field name="logo2" class="java.lang.String"/>
+	<field name="candidate_name" class="java.lang.String"/>
+	<field name="fathers_name" class="java.lang.String"/>
+	<field name="mothers_name" class="java.lang.String"/>
+	<field name="dob" class="java.lang.String"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="id_Mark" class="java.lang.String"/>
+	<field name="aadhar_no" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="mobile" class="java.lang.String"/>
+	<field name="candidate_photo" class="java.lang.String"/>
+	<field name="afcat_center" class="java.lang.String"/>
+	<field name="exam_date" class="java.lang.String"/>
+	<field name="reporting_time" class="java.lang.String"/>
+	<field name="exam_time" class="java.lang.String"/>
+	<field name="thumb_impression" class="java.lang.String"/>
+	<field name="signature" class="java.lang.String"/>
+	<field name="registration_no" class="java.lang.String"/>
+	<field name="afcatcenter_address" class="java.lang.String"/>
+	<field name="hallticket_no" class="java.lang.String"/>
+	<field name="exam_slot" class="java.lang.String"/>
+	<field name="centerNameCode" class="java.lang.String"/>
+	<field name="ektStream" class="java.lang.String"/>
+	<field name="oldHallticketno" class="java.lang.String"/>
+	<field name="categoryTitle" class="java.lang.String"/>
+	<field name="landMark" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="800" splitType="Immediate">
+			<staticText>
+				<reportElement x="0" y="10" width="515" height="700" uuid="cadae950-dbe2-435d-a41b-9ac1a411aa05"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[4.      The candidates will be subjected to biometric recording, photography and signature on attendance sheet prior commencement of the examination. If canddiate is found as imposter, his candidature will be cancelled and FIR/ Criminal Proceedings will be initiated against the applicant and the proxy candidate. The biometric recording at Stage-I cannot be waived off and the candidature will be cancelled.<br><br>
+
+5.       <b>The candidates should note that their admission to the examination will be purely provisional based on the information given by them in the Application Form.</b> This will be subject to verification of all the eligibility conditions by Indian Coast Guard. The mere fact that an Admit Card has been issued to a candidate, will not imply that his/her candidature has been finally cleared by Indian Coast Guard or that entries made by the candidate in his/her application for the Preliminary examination have been accepted by Indian Coast Guard as true and correct. Candidates may note that the Indian Coast Guard takes up the verification of eligibility conditions of a candidate, with reference to original documents, only after the candidate has qualified for the Stage II/ Stage III. Unless the candidate is formally confirmed by the Indian Coast Guard in service after verification of documents from the respective boards/ universities, his candidature continues to be provisional. The decision of the Indian Coast Guard as to the eligibility or otherwise of a candidate for admission to the Examination shall be final.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="212" width="515" height="88" uuid="47eedfec-39a2-44a2-b593-fa73a0b5495e"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[* There is a possibility that the candidate has submitted his original class X marksheet in various educational institutes/organisation. In this case, the candidate has to produce the following documents in place of original class X marksheet failing which his candidature will be cancelled:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="255" width="488" height="22" uuid="0979b430-6f2a-41c7-9656-d2deab7ffc34"/>
+				<textElement markup="html"/>
+				<text><![CDATA[Self attested photocopy of class X marksheet.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="255" width="17" height="22" uuid="f40056cc-87e2-476e-a7af-042f1cf39af3"/>
+				<textElement markup="html"/>
+				<text><![CDATA[(a)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="269" width="17" height="22" uuid="7dd45d8b-5c05-4629-8ed2-4f85c50cb08d"/>
+				<textElement markup="html"/>
+				<text><![CDATA[(b)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="269" width="488" height="82" uuid="a974815f-9f18-4dbc-a588-ebbb22d85eac"/>
+				<textElement textAlignment="Justified" markup="html"/>
+				<text><![CDATA[Certificate from the Principal/head of the organisation/university that the original class X marksheet is held with the educational institutes/organisation.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

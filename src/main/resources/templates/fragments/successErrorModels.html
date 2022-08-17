@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<link rel="stylesheet"
+	th:href="@{/vendors/perfect-scrollbar/perfect-scrollbar.css}">
+<link rel="stylesheet" th:href="@{/css/app.css}">
+<link rel="stylesheet"
+	th:href="@{/fontawesome-free-5.15.1-web/css/all.min.css}">
+</head>
+
+<body>
+	<div th:fragment="successErrorModels">
+		<!-- 	New Success Model -->
+		<div class="modal fade" id="successModal" tabindex="-1" role="dialog" data-keyboard="false"
+			data-backdrop="static" 	aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 style="color: green" class="modal-title">
+						
+							  <i style="font-size: 20px;" class="icon-check menu-icon"> </i>
+							&nbsp;&nbsp;
+							Success !
+						</h4>
+						<img th:src="@{/images/logo_icg.png}" alt="" height="30">
+					</div>
+					<div class="modal-body" id="successModalMessage"></div>
+					<div class="modal-footer" style="padding: 0.4rem;">
+						<a class="btn btn-primary" id="successModalOk" data-dismiss="modal">Ok</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 	End New Success Model -->
+		<!-- 	New Error Model -->
+		<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" data-keyboard="false"
+			data-backdrop="static"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 style="color: red" class="modal-title" id="myModalLabel">
+							
+							 <i style="font-size: 20px;" class="icon-info menu-icon"> </i>
+							&nbsp;&nbsp;
+							Alert !
+						</h4>
+						<img  th:src="@{/images/logo_icg.png}" alt="" height="20">
+					</div>
+					<div class="modal-body" id="errorModalMessage">Some error Occurred !<br> Please login again.</div>
+					<div class="modal-footer">
+						<a class="btn btn-secondary" id="ErrorModalClose"
+							data-dismiss="modal">Close</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 	End New End Model -->
+		<!-- City selection custom modal -->
+		<div class="modal fade" th:if="${msg}" id="successModalCity"
+			tabindex="-1" role="dialog" data-keyboard="false"
+			data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header" th:if="${forwardUserFlag}">
+						<h4 style="color: green" class="modal-title">
+							<i style="font-size: 20px;" class="fas fa-check-circle fa-5x"></i>&nbsp;&nbsp;
+							Success !
+						</h4>
+						<img  th:src="@{/images/logo_icg.png}" alt="" height="30">
+					</div>
+					<div class="modal-header" th:unless="${forwardUserFlag}">
+						<h4 style="color: red" class="modal-title" id="myModalLabel">
+							<i style="font-size: 20px;" class="fas fa-info-circle fa-5x"></i>&nbsp;&nbsp;
+							Alert !
+						</h4>
+						<img  th:src="@{/images/logo_icg.png}" alt="" height="20">
+					</div>
+					<div class="modal-body">
+						<span class="modal-title text-center" th:text="${msg}">Message</span>
+					</div>
+					<div class="modal-footer" style="padding: 0.4rem;">
+						<button type="button" style="float: left;"
+							th:unless="${forwardUserFlag}" class="btn btn-secondary"
+							data-dismiss="modal">Ok</button>
+						<a id="forwardUserBtn" style="float: right;"
+							th:if="${forwardUserFlag}" th:href="@{${forwardPath}}"
+							class="btn btn-primary">Ok</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End City selection custom modal -->
+		<!-- Signup custom modal -->
+		<div class="modal fade" th:if="${msg}" id="successModalSignUp"
+			tabindex="-1" role="dialog" data-keyboard="false"
+			data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 style="color: green" class="modal-title">
+							<i style="font-size: 20px;" class="fas fa-check-circle fa-5x"></i>&nbsp;&nbsp;
+							Success !
+						</h4>
+						<img  th:src="@{/images/logo_icg.png}" alt="" height="30">
+					</div>
+					<!-- <div class="modal-header" th:unless="${forwardUserFlag}">
+						<h4 style="color: red" class="modal-title" id="myModalLabel">
+							<i style="font-size: 20px;" class="fas fa-info-circle fa-5x"></i>&nbsp;&nbsp;
+							Alert !
+						</h4>
+						<img  th:src="@{/images/logo_icg.png}" alt="" height="20">
+					</div> -->
+					<div class="modal-body">
+						<span class="modal-title text-center" th:text="${msg}">Message</span>
+					</div>
+					<div class="modal-footer" style="padding: 0.4rem;">
+					<!-- 	<button type="button" style="float: left;"
+							th:unless="${forwardUserFlag}" class="btn btn-secondary"
+							data-dismiss="modal">Ok</button> -->
+						<a id="forwardUserBtn" style="float: right;"
+							 th:href="@{${forwardPath}}"
+							class="btn btn-primary">Ok</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		<!-- End Signup custom modal -->
+	</div>
+</body>
+</html>

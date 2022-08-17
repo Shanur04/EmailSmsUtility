@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sidebar</title>
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon.png}">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+     <link th:href="@{/icons/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+</head>
+
+<body>
+	
+	<div class="container">		
+		<div th:fragment="seatAllocationTabs">
+		<p style="color: green"><i>Click on following tab for further processing</i></p>
+		   				<nav>
+							<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+								<a class="nav-item nav-link active" id="sameCityAllocList"
+									data-toggle="tab" href="#nav-home" role="tab"
+									aria-controls="nav-home" aria-selected="true"
+									th:text="#{lang.eng.sameCityAlloc}"></a> 
+								<a class="nav-item nav-link" id="interCityAlloc"
+									data-toggle="tab" href="#nav-profile" role="tab"
+									aria-controls="nav-profile" aria-selected="false"
+									th:text="#{lang.eng.interCityAlloc}"></a> 
+								<a class="nav-item nav-link" id="candidateWiseAlloc"
+									data-toggle="tab" href="#nav-profile" role="tab"
+									aria-controls="nav-profile" aria-selected="false"
+									th:text="#{lang.eng.candidateWiseAlloc}"></a>
+								<a class="nav-item nav-link" id="singleCandidateAlloc"
+									data-toggle="tab" href="#nav-profile" role="tab"
+									aria-controls="nav-profile" aria-selected="false"
+									th:text="#{lang.eng.singleCandidateAlloc}"></a>
+								<a class="nav-item nav-link" id="candidateWiseFirstDayAlloc"
+									data-toggle="tab" href="#nav-profile" role="tab"
+									aria-controls="nav-profile" aria-selected="false"
+									th:text="#{lang.eng.candidateWiseFirstDayAlloc}"></a>									
+							</div>
+						</nav>
+		</div>
+		<br />
+	</div>
+</body>
+</html>

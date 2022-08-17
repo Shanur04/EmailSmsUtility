@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2022-03-10T18:05:42 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="admit_card" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="15" bottomMargin="15" uuid="4448419d-c97d-4ad5-a52e-17c6238ee410">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="logo" class="java.lang.String"/>
+	<field name="proto" class="java.lang.String"/>
+	<field name="hallTktNo" class="java.lang.String"/>
+	<field name="regNo" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="fname" class="java.lang.String"/>
+	<field name="mname" class="java.lang.String"/>
+	<field name="dob" class="java.lang.String"/>
+	<field name="category" class="java.lang.String"/>
+	<field name="photoid" class="java.lang.String"/>
+	<field name="post" class="java.lang.String"/>
+	<field name="applicantPhotopath" class="java.lang.String"/>
+	<field name="signPhotopath" class="java.lang.String"/>
+	<field name="examSlot" class="java.lang.String"/>
+	<field name="examDate" class="java.lang.String"/>
+	<field name="reportingtime" class="java.lang.String"/>
+	<field name="closingtime" class="java.lang.String"/>
+	<field name="examtime" class="java.lang.String"/>
+	<field name="centerName" class="java.lang.String"/>
+	<field name="gender" class="java.lang.String"/>
+	<field name="landmark" class="java.lang.String"/>
+	<field name="watermark" class="java.lang.String"/>
+	<field name="centreName" class="java.lang.String"/>
+	<field name="idmark1" class="java.lang.String"/>
+	<field name="idmark2" class="java.lang.String"/>
+	<field name="candidatePhotoUrl" class="java.lang.String"/>
+	<background>
+		<band height="812" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="511" height="812" uuid="b7f80469-b333-4e18-ac15-3cffb314eade"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<image scaleImage="RetainShape" hAlign="Center" vAlign="Middle">
+				<reportElement isPrintRepeatedValues="false" mode="Transparent" x="149" y="300" width="210" height="240" uuid="da221e83-498d-424b-9092-ac12ad91f5cb">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{watermark}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="812" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="205" width="100" height="25" uuid="648bed11-f8c1-4732-9b66-ef4e3ed66019">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="3" spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[आवेदन पंजीकरण सं.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="155" width="100" height="25" uuid="125bbaa3-8867-4f60-ac90-4e758e299022"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" size="10.4" isBold="true"/>
+					<paragraph leftIndent="3" spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[नाम]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="230" width="100" height="24" uuid="b94196a3-c6e9-42fb-bebf-a9c47a73c191"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="3" spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[जन्मतिथि]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="500" width="70" height="31" uuid="65b00022-82dd-4022-b735-17c3716b6a27">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement markup="none">
+					<font fontName="Mangal" isBold="true" isUnderline="true"/>
+					<paragraph leftIndent="5"/>
+				</textElement>
+				<text><![CDATA[लैंडमार्क: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="343" width="100" height="25" uuid="b7dd0f4b-d892-4758-bcf7-8b9f9aea9833">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="3" spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[आवेदित पद]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="368" width="513" height="25" uuid="42b7a234-89a0-4340-93fa-25f12c8cd9ab">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Akshar Unicode" size="12" isBold="true" isUnderline="true"/>
+					<paragraph spacingBefore="0"/>
+				</textElement>
+				<text><![CDATA[परीक्षा संबंधी विवरण]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="393" width="145" height="26" uuid="0f2ea5de-c80c-423c-a3ba-27afdb3286ef">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph leftIndent="0" spacingBefore="0"/>
+				</textElement>
+				<text><![CDATA[परीक्षा की तिथि]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="393" width="60" height="26" uuid="d27b0fce-2314-4680-92c3-f50659861d50">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single" firstLineIndent="5" leftIndent="0" spacingBefore="0"/>
+				</textElement>
+				<text><![CDATA[शिफ्ट]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="445" width="100" height="82" uuid="7c6b0f63-5d83-4adb-a008-933dc7e28488">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph leftIndent="4" spacingBefore="2"/>
+				</textElement>
+				<text><![CDATA[परीक्षा का केंद्र]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="180" width="100" height="25" uuid="d24316c2-4334-42b5-951a-8734888a9113">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" size="10.4" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="3" spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[हॉल टिकट संख्या]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="315" y="187" width="88" height="110" uuid="c4ab42a0-067b-4d76-bb35-86565cc92819">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{applicantPhotopath}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement stretchType="ElementGroupBottom" x="409" y="180" width="104" height="123" uuid="4518cfac-9fb8-42e5-921a-e3bbb5890caa">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.tabStopWidth" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Akshar Unicode" size="8" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="10" rightIndent="10" spacingBefore="22" tabStopWidth="0"/>
+				</textElement>
+				<text><![CDATA[अभ्यर्थी का फोटोग्राफ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="513" height="155" forecolor="#12438D" backcolor="rgba(190, 225, 247, 0.0)" uuid="e9f45199-df2c-48a6-8b5a-60ab2a7dfc28">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineWidth="1.0" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+					<paragraph lineSpacing="Single" spacingBefore="7"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="224" width="92" height="82" uuid="b22f4903-0af1-4de9-9b08-80960d5d27cb">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Akshar Unicode" size="8" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="2" rightIndent="2" spacingBefore="0"/>
+				</textElement>
+				<text><![CDATA[(परीक्षा केंद्र निरीक्षक एवं सीआई के समक्ष फोटो चिपकाई जाए, जिस पर आर-पार  हस्ताक्षर करें)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="279" width="100" height="25" uuid="7160fd77-2df9-4f25-9b29-0bba5a1ad808"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph leftIndent="3" spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[फोटो पहचान पत्र]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="230" width="60" height="24" uuid="a643f88e-37a9-47ca-8bc2-6d4aaf8d2808">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="4" spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[लिंग]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement x="4" y="4" width="80" height="90" uuid="b329d272-3a6d-4405-aadc-5474692972b3">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[$F{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="1" width="513" height="47" uuid="1af14e66-adbe-42a0-a5c2-7afcfff86b7f"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Akshar Unicode" size="18" isBold="true" isUnderline="false"/>
+					<paragraph spacingBefore="8"/>
+				</textElement>
+				<text><![CDATA[भारतीय तटरक्षक]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="513" height="50" uuid="9863d392-e824-42c2-9a47-731e399cd10a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Akshar Unicode" size="14" isBold="true"/>
+					<paragraph spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[भर्ती निदेशालय]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="60" width="338" height="28" uuid="973f57e1-a497-4d75-bed0-593d72e2dde6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[सी ब्लॉक, सेक्टर – 62, औद्योगिक क्षेत्र, नोएडा – 201309, उत्तर प्रदेश]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="95" width="513" height="30" uuid="cfb58e30-6a42-4eb3-82c9-2c9ca214a891"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Akshar Unicode" size="14" isBold="true" isUnderline="true"/>
+					<paragraph leftIndent="0"/>
+				</textElement>
+				<text><![CDATA[औपबंधिक ई - प्रवेश पत्र]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="116" width="514" height="30" forecolor="#C90616" uuid="be00b816-a1fb-475c-8886-d9b783ce95f2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Akshar Unicode" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[(चरण I हेतु)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="254" width="100" height="25" uuid="97a5eff0-4e06-49a5-87eb-6764171fb9a7">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="3" spacingBefore="6"/>
+				</textElement>
+				<text><![CDATA[श्रेणी]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="393" width="81" height="26" uuid="0a94ea3d-476b-4d1d-83da-26a3cfbdcb86">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph leftIndent="0" spacingBefore="0"/>
+				</textElement>
+				<text><![CDATA[समाप्ति समय]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="388" y="393" width="125" height="26" uuid="17064984-70f7-4a65-bc8b-c11d2004bfd2">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="0" spacingBefore="0"/>
+				</textElement>
+				<text><![CDATA[परीक्षा का समय]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="527" width="164" height="34" uuid="6d48359e-5e31-450e-a017-005be966e3b4">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph leftIndent="5" spacingBefore="2"/>
+				</textElement>
+				<text><![CDATA[अभ्यर्थी द्वारा अपलोड किया गया हस्ताक्षर]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="527" width="169" height="34" uuid="a4bd159d-889e-43c7-aadf-6625c8fd66e0">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="html">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph leftIndent="5" spacingBefore="2"/>
+				</textElement>
+				<text><![CDATA[अभ्यर्थी के हस्ताक्षर<br>सी-डैक अधिकारी के समक्ष ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="561" width="164" height="82" uuid="e894e6b3-64a1-4903-b7e9-1c6dc2dd46a6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="561" width="169" height="82" uuid="84e27816-2f65-45cc-b2ef-3d1dfc6a2d29"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="527" width="180" height="34" uuid="e96a258d-19e0-46a4-a262-ef8903b95c9f">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph leftIndent="5" spacingBefore="2"/>
+				</textElement>
+				<text><![CDATA[सी-डैक अधिकारी द्वारा सत्यापित]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="561" width="180" height="82" uuid="2c4f8f1b-dfb9-4915-8510-7560df64b136">
+					<property name="com.jaspersoft.studio.unit.spacingAfter" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+					<paragraph spacingBefore="0" spacingAfter="0"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="645" width="513" height="49" forecolor="#C90616" uuid="b763f009-f67c-49c4-b8c0-ea2b79aeceea">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="Akshar Unicode" size="11" isBold="false"/>
+					<paragraph spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[<b><u>नोट:-</u> चरण-I के लिए अभ्यर्थी द्वारा पंजीकृत ई-मेल आईडी ही उसका यूजरनेम होगा।</b>]]></text>
+			</staticText>
+			<image scaleImage="FillFrame">
+				<reportElement x="422" y="2" width="90" height="90" uuid="e15edc6f-f31b-403f-bf75-40ab40ca4615">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<imageExpression><![CDATA[com.google.zxing.client.j2se.MatrixToImageWriter.toBufferedImage(
+		    new com.google.zxing.qrcode.QRCodeWriter().encode(
+		        $F{candidatePhotoUrl},
+		        com.google.zxing.BarcodeFormat.QR_CODE, 1000, 1000))]]></imageExpression>
+			</image>
+			<image scaleImage="FillFrame" hAlign="Left" vAlign="Top">
+				<reportElement x="23" y="567" width="119" height="70" uuid="61870da3-a6c3-4257-a90c-e39b5a8672f0">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<graphicElement fill="Solid"/>
+				<imageExpression><![CDATA[$F{signPhotopath}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="100" y="180" width="210" height="25" uuid="2e4e3f9a-a017-41c9-8f61-74e6324fc47b">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="11" isBold="true"/>
+					<paragraph firstLineIndent="5" spacingBefore="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hallTktNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="205" width="210" height="25" uuid="3c925cb9-e3f1-45aa-a5d5-89ff43583847">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<paragraph firstLineIndent="5" spacingBefore="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{regNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="155" width="413" height="25" uuid="2c18f631-7373-49c2-af4e-bd8bdfdd6d73">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph firstLineIndent="5" spacingBefore="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="230" width="80" height="24" uuid="4e4b94ec-9e3c-4ebe-9be9-74961270924c">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph firstLineIndent="5" spacingBefore="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dob}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="230" width="70" height="24" uuid="e74f1fac-3788-493b-a0d1-37e7c699b2d2">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<paragraph firstLineIndent="5" spacingBefore="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="254" width="210" height="25" uuid="d8779365-5cd6-4fbb-957a-71a4db63d58b">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="9"/>
+					<paragraph firstLineIndent="5" spacingBefore="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{category}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="279" width="288" height="25" uuid="f7e47409-3094-4d14-97d3-f5b465e1c582">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="9" isBold="true"/>
+					<paragraph firstLineIndent="5" spacingBefore="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{photoid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="343" width="413" height="25" uuid="eba598e4-de03-46dc-a371-cd40bd07da7f">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph firstLineIndent="5" spacingBefore="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{post}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="419" width="145" height="26" uuid="f8dbfa5e-687e-4d35-8f3f-21cf163be129"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{examDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="419" width="60" height="26" uuid="59e23ca4-835a-4e5f-9702-9c35b7e24d96"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{examSlot}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="206" y="419" width="101" height="26" uuid="0cd801cf-db3e-4034-be5e-f93ab7e70c34">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{reportingtime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="308" y="419" width="80" height="26" uuid="2b6ee3ed-978f-4bb8-8f6c-6dffb469618b">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{closingtime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="419" width="125" height="26" uuid="e8969bdd-00d2-426e-84ff-bbb16c161dc1">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{examtime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="445" width="413" height="82" uuid="e2d5bb1d-2d5d-4890-bf0d-8e92ae1a78a2">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+				</reportElement>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="5" spacingBefore="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{centreName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="500" width="343" height="31" uuid="4fb59ce7-39cd-436d-8ebb-e2312b664e34">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{landmark}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="334" y="629" width="180" height="26" uuid="ec38f94a-9b54-444e-b512-b943c688818a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Akshar Unicode" isBold="true"/>
+				</textElement>
+				<text><![CDATA[सी-डैक अधिकारी के हस्ताक्षर]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="393" width="101" height="26" uuid="d3432735-3045-4545-ab4b-cfe9694cc597">
+					<property name="com.jaspersoft.studio.unit.leftIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph leftIndent="0" spacingBefore="0"/>
+				</textElement>
+				<text><![CDATA[रिपोर्टिंग]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="670" width="513" height="24" uuid="ed863c93-766f-428c-a001-2e66d29a2c3e"/>
+				<textElement markup="html">
+					<font fontName="Akshar Unicode"/>
+				</textElement>
+				<text><![CDATA[<b>परीक्षा केंद्र पर निम्नलिखित दस्तावेजों को लाना अनिवार्य है:-</b>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="304" width="100" height="39" uuid="3b8e3a68-76a5-4fd1-9f9f-bedb6fe6ba30">
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="Akshar Unicode" size="10" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="3" spacingBefore="3"/>
+				</textElement>
+				<text><![CDATA[पहचान चिन्ह]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="304" width="210" height="39" uuid="59839818-d0fb-45d1-a4a4-1a5c98f29ea2">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="9" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="5" spacingBefore="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idmark1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="304" width="203" height="39" uuid="54a0b9bc-d337-43ce-8c8c-11df0225c240">
+					<property name="com.jaspersoft.studio.unit.firstLineIndent" value="px"/>
+					<property name="com.jaspersoft.studio.unit.spacingBefore" value="px"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="9" isBold="true"/>
+					<paragraph firstLineIndent="0" leftIndent="5" spacingBefore="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idmark2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="756" width="513" height="44" uuid="1a91303e-c0ca-4f32-8b55-9a7733feeafe"/>
+				<textElement markup="html">
+					<font fontName="Akshar Unicode"/>
+				</textElement>
+				<text><![CDATA[<b><u>नोट:- इन दस्तावेजों को जमा न करने पर अभ्यर्थी की उम्मीदवारी रद्द कर दी जाएगी और अभ्यर्थी को परीक्षा में बैठने की अनुमति नहीं होगी।</u></b>]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="279" width="210" height="25" uuid="343e3b6a-6eba-49a4-8391-8b9df6d95cf6"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="686" width="493" height="24" uuid="bef80ddc-129b-494d-8ad9-c4871488745b"/>
+				<textElement markup="html">
+					<font fontName="Akshar Unicode"/>
+				</textElement>
+				<text><![CDATA[(क) दसवीं कक्षा की मूल अंक-तालिका*]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="703" width="494" height="24" uuid="402186a3-e0bd-4072-b014-a41c9d4c5791"/>
+				<textElement markup="html">
+					<font fontName="Akshar Unicode"/>
+				</textElement>
+				<text><![CDATA[(ख) आवेदन पत्र में प्रस्तुत /ई-प्रवेश पत्र में इंगित फोटो पहचान पत्र की मूल वैध प्रति]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="718" width="494" height="33" uuid="2d7a7b8d-36e2-4fca-8fc5-7f8c9032f575"/>
+				<textElement markup="html">
+					<font fontName="Akshar Unicode"/>
+				</textElement>
+				<text><![CDATA[(ग) ई-प्रवेश पत्र का 01 रंगीन प्रिंट (श्याम और श्वेत मान्य नहीं)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="735" width="495" height="33" uuid="32ac99c4-21ef-4991-9f41-7b4e470d8a2c"/>
+				<textElement markup="html">
+					<font fontName="Akshar Unicode"/>
+				</textElement>
+				<text><![CDATA[(घ) ऑनलाइन आवेदन के समय अपलोड किए गए समरूपी फोटो की पासपोर्ट आकार की 02 रंगीन फोटोग्राफ ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>
