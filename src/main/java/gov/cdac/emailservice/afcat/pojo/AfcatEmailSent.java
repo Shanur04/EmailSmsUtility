@@ -341,7 +341,6 @@ public class AfcatEmailSent implements Serializable {
 	public void getHelperScheduler(AfcatEmailScheduleDetail emailScheduleDetail) {
 		this.emailScheduleDetails.add(emailScheduleDetail);
 		emailScheduleDetail.setEmailSent(this);
-		System.out.println("in helper : "+this.emailScheduleDetails.get(0).getEmailSent());
 	}
 	
 	public String getSendAdmitCardsRadio() {

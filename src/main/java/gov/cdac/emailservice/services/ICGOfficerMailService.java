@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +57,7 @@ import gov.cdac.emailservice.icg.officer.repository.EmailTextReportDetailsReposi
 import gov.cdac.emailservice.icg.officer.repository.IcgOfficerCentreMasterRepository;
 import gov.cdac.emailservice.icg.officer.repository.IcgOfficerExamMasterRepository;
 import gov.cdac.emailservice.icg.officer.repository.IcgOfficerExamSlotRepository;
+import gov.cdac.emailservice.models.CentreModel;
 import gov.cdac.emailservice.models.EmailModel;
 import gov.cdac.emailservice.models.ReportInfo;
 import gov.cdac.emailservice.models.TestEmailBulkModel;
@@ -100,9 +104,13 @@ public class ICGOfficerMailService implements MailService {
 	
 	@Value("${filePath.downloadExcelReportDownloadDir}")
 	private String downloadExcelReportDownloadDir;
+	
+	private FileHandler fh; 
 
 	private static final Logger centerWiseSendEmail = Logger.getLogger("CenterWiseSendEmail");
 	private static final Logger acknowledgementOfSentEmail = Logger.getLogger("CenterWiseSendEmail");
+	
+	private static final java.util.logging.Logger ICGOFFICERMAILSENTLOGGER = java.util.logging.Logger.getLogger(ICGOfficerMailService.class.getName());
 
 	private ArrayList<String> notSentEmailIds = new ArrayList<String>();
 
@@ -250,7 +258,7 @@ public class ICGOfficerMailService implements MailService {
 		System.out.println("Report generated for : "+emailSentId+" | "+emailScheduleId);
 		IcgOfficerEmailReportDetail report = emailReportDetailRepository.findByEmailSentIdAndEmailScheduleId(emailSentId, emailScheduleId);
 		if (report == null) {
-			System.out.println("report is null : 1st scheduler..!!!");
+			System.out.println("Report is null : 1st scheduler..!!!");
 			UserExcelExporter exp = new UserExcelExporter(appCredIds, emailIds, subject, body, sentType, reqType);
 			try {
 				Path path = exp.export1();
@@ -272,6 +280,26 @@ public class ICGOfficerMailService implements MailService {
 	}
 
 	public String addEmailSentEntry(EmailModel emailModel, String emailType, String reqType, HttpServletRequest request) {
+		try {  
+			 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");  
+			 LocalDateTime now = LocalDateTime.now();  
+	        fh = new FileHandler("D:/EmailSMS/email_sent_logs/icg_offier/"+emailModel.getMailReason()+"_"+dtf.format(now)+".log");
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fh.setFormatter(formatter); 
+	        
+	        ICGOFFICERMAILSENTLOGGER.addHandler(fh);
+	        
+	        // the following statement is used to log any messages  
+	        ICGOFFICERMAILSENTLOGGER.info("AFCAT : "+emailModel.getMailReason());  
+	        ICGOFFICERMAILSENTLOGGER.info("Date & Time : "+dtf.format(now)); 
+	        ICGOFFICERMAILSENTLOGGER.info("Email Subject : "+emailModel.getEmailSubject()); 
+	        ICGOFFICERMAILSENTLOGGER.info("Email Body : "+emailModel.getEmailContent());
+	        
+	    } catch (SecurityException e) {  
+	        e.printStackTrace();  
+	    } catch (IOException e) {  
+	        e.printStackTrace();  
+	    } 
 		HttpSession session = request.getSession();
 		session.setAttribute("disableEnableButtons", "disable");
 		notSentEmailIds.clear();
@@ -357,6 +385,7 @@ public class ICGOfficerMailService implements MailService {
 			}
 			centerWiseSendEmail.info("allEmailIdsAndHallTicketNumbers.size() : " + allEmailIdsAndHallTicketNumbers.size());
 		
+			ICGOFFICERMAILSENTLOGGER.info("Total Count : "+emailIds.size());
 			emailSent = emailSentRepository.save(new IcgOfficerEmailSent(examMasterRepository.getOne(1), emailIds.size(), 
 					emailModel.getEmailSubject(), emailModel.getEmailContent(), emailModel.getMailReason(),
 					new Timestamp(System.currentTimeMillis()), emailModel.getSentType(), false, emailModel.getPageType(),
@@ -399,8 +428,10 @@ public class ICGOfficerMailService implements MailService {
 			}
 			if (attachmentPath.size() > 0) {
 				emailSent.setAttachmentPath(attachmentPath.toString());
+				ICGOFFICERMAILSENTLOGGER.info("Attachment : true :: Count : "+attachmentPath.size());
 			} else {
 				emailSent.setAttachmentPath(null);
+				ICGOFFICERMAILSENTLOGGER.info("Attachment : false");
 			}
 			
 			if (emailModel.getSentType() == 1 || emailModel.getSentType() == 2) {
@@ -455,8 +486,12 @@ public class ICGOfficerMailService implements MailService {
 			}
 			
 			if(emailModel.getSentType() == 1 || emailModel.getSentType() == 2) {
+				ICGOFFICERMAILSENTLOGGER.info("Quick Mail");
+				
 				sendEmailAsync(emailIds, null, emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()));
 			}else {
+				ICGOFFICERMAILSENTLOGGER.info("Scheduled Mail");
+				
 				generateReport(emailIds, null, emailSent.getEmailSentId(), emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()),
 					emailModel.getEmailSubject(), emailModel.getEmailContent(), emailModel.getSentType(), reqType);
 			}
@@ -607,8 +642,8 @@ public class ICGOfficerMailService implements MailService {
 							centerWiseSendEmail.info("oneHundredSubSetOfMap.size() : " + oneHundredSubset.size());
 							
 							//host : smtp.cdac.in | port : 25
-							mailThreadArray[arrayIndex] = new MailThreadExcel(emailSent.getMailServerHost(),
-									emailSent.getMailServerPort(), emailSent.getStarttls(),
+							mailThreadArray[arrayIndex] = new MailThreadExcel("mailgw-dr.noida.cdac.in",
+									"25", emailSent.getStarttls(),
 									emailSent.getSocketFactoryPort(), mailUserName, mailPassword,
 									emailSent.getSubject(), emailSent.getBody(),
 									oneHundredSubset, fileArray, emailAttachmentDirFromPropertyFile+emailSentId+File.separator,
@@ -1367,6 +1402,11 @@ public class ICGOfficerMailService implements MailService {
 	@Override
 	public String getPath(String emialId, String filePath) {
 		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CentreModel> populateListOfCentres() {
 		return null;
 	}
 

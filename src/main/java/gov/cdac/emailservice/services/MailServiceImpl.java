@@ -1,6 +1,8 @@
 package gov.cdac.emailservice.services;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.MessagingException;
@@ -20,15 +22,20 @@ public class MailServiceImpl {
 	private static final Logger centerWiseSendEmail = Logger.getLogger("CenterWiseSendEmail");
 	private static final Logger centerWiseMailSentEmailLogger = Logger.getLogger("CenterWiseMailSentEmailIds");
 	private static final Logger CenterWiseEmailMessageIdLogger = Logger.getLogger("CenterWiseEmailMessageIDs");
+	
+	private static final java.util.logging.Logger AFCATMAILSENTLOGGER = java.util.logging.Logger.getLogger(AfcatMailService.class.getName());
+	private static final java.util.logging.Logger ICGMAILSENTLOGGER = java.util.logging.Logger.getLogger(ICGMailService.class.getName());
+	private static final java.util.logging.Logger ICGOFFICERMAILSENTLOGGER = java.util.logging.Logger.getLogger(ICGOfficerMailService.class.getName());
+	private static final java.util.logging.Logger CASBMAILSENTLOGGER = java.util.logging.Logger.getLogger(CasbMailService.class.getName());
+
 	public static boolean sendMailCenterWise(final String mailServerHost, final String mailServerPort, final Boolean starttls, final String socketFactoryPort, final String from, final String password, final String to, final String subject, String message, ArrayList<File> FileList, boolean mailShouldBeSend, String tempFileDirFromPropertyFile,String admitCardFilePath) {
 		
-		centerWiseSendEmail.info("inside sendMailCenterWise of MailingService");
+		//centerWiseSendEmail.info("inside sendMailCenterWise of MailingService");
 		boolean booleanToReturn = false;
 		//created the object of JavaMailSenderImpl
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
 		try {
 			//Set the mail server host, typically an SMTP host.
-			System.out.println("SMTP Host:"+mailServerHost + " | "+"Port:"+mailServerPort);//smtp.cdac.in
 
 			sender.setHost(mailServerHost);
 			sender.setPort(Integer.valueOf(mailServerPort));
@@ -39,7 +46,6 @@ public class MailServiceImpl {
 			//if i will set starttls as false ,it is running in  my system
 			props.put("mail.smtp.starttls.enable", "false");
 			props.put("mail.debug", "false");
-			System.out.println("SocketFactoryPort:"+socketFactoryPort);
 			props.put("mail.smtp.socketFactory.port", socketFactoryPort);//587
 			sender.setJavaMailProperties(props);
 			//comment when production
@@ -67,7 +73,6 @@ public class MailServiceImpl {
 			MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true,"UTF-8");
 			//comment when production
 			String personal = "ICG";
-			System.out.println("FROM:"+from);
 			if(from.equalsIgnoreCase("afcat@cdac.in")) {
 				personal = "AFCAT";
 			}else if(from.equalsIgnoreCase("casb@cdac.in")) {
@@ -83,8 +88,8 @@ public class MailServiceImpl {
 			mimeMessageHelper.setText(message, message);
 			mimeMessageHelper.setSubject(subject);
 			mimeMessageHelper.getMimeMessage().saveChanges();
-			centerWiseSendEmail.info("mimeMessageHelper.getMimeMessage().getMessageID() : " + mimeMessageHelper.getMimeMessage().getMessageID());
-			CenterWiseEmailMessageIdLogger.info(to + " - " + mimeMessageHelper.getMimeMessage().getMessageID());
+			//centerWiseSendEmail.info("mimeMessageHelper.getMimeMessage().getMessageID() : " + mimeMessageHelper.getMimeMessage().getMessageID());
+			//CenterWiseEmailMessageIdLogger.info(to + " - " + mimeMessageHelper.getMimeMessage().getMessageID());
 			
 			
 			if(FileList.size()>0)
@@ -104,8 +109,15 @@ public class MailServiceImpl {
 			}
 			
 //			System.out.println("after file list");
-			
-			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");  
+			LocalDateTime now = LocalDateTime.now(); 
+			if(personal.equalsIgnoreCase("AFCAT"))
+				AFCATMAILSENTLOGGER.info("Email Id : "+ to + " Sent Date & Time : "+dtf.format(now));
+			else if(personal.equalsIgnoreCase("ICG"))
+				ICGMAILSENTLOGGER.info("Email Id : "+ to + " Sent Date & Time : "+dtf.format(now));
+			else
+				CASBMAILSENTLOGGER.info("Email Id : "+ to + " Sent Date & Time : "+dtf.format(now));
+				
 		} catch (MessagingException e) {
 			centerWiseSendEmail.error("inside MessagingException Catch block of sendMail of MailingService");
 			e.printStackTrace();
@@ -124,8 +136,8 @@ public class MailServiceImpl {
 			{
 //				Mail send from here
 				sender.send(mimeMessage);
-				centerWiseSendEmail.info("Mail Sent to : " + to);
-				centerWiseMailSentEmailLogger.info(to);
+				//centerWiseSendEmail.info("Mail Sent to : " + to);
+				//centerWiseMailSentEmailLogger.info(to);
 				//here boolean return is getting false
 				booleanToReturn =  true;
 			}
@@ -138,7 +150,7 @@ public class MailServiceImpl {
 			centerWiseSendEmail.error("inside Exception Catch block of sendMail of MailingService");
 			e.printStackTrace();
 		}
-		centerWiseSendEmail.info("booleanToReturn : " + booleanToReturn);
+		//centerWiseSendEmail.info("booleanToReturn : " + booleanToReturn);
 		return booleanToReturn;
 	}
 }

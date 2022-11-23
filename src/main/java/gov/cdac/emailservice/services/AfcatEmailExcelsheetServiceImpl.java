@@ -18,17 +18,13 @@ public class AfcatEmailExcelsheetServiceImpl implements EmailExcelsheetService{
 
 	@Override
 	public List<String> getExcel(Path path, Boolean isMobileList) throws IOException {
-		System.out.println("Afcat get Excel");// done
-
 		if (path != null) {
 
 			FileInputStream inputStream = new FileInputStream(path.toString());
 			XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 			XSSFSheet sheet = workbook.getSheetAt(0);
 			int rows = sheet.getLastRowNum() - 3;
-			System.out.println(rows);// 3 done
 			int cols = sheet.getRow(3).getLastCellNum();
-			System.out.println(cols);// 1 done
 
 			ArrayList<Cell> list1 = new ArrayList<Cell>();
 			List<String> outputList = new ArrayList<String>();
@@ -38,9 +34,7 @@ public class AfcatEmailExcelsheetServiceImpl implements EmailExcelsheetService{
 
 				Cell cell = row.getCell(j); 
 				String s = cell.getStringCellValue().toString();
-				
-				System.out.println(s);
-				
+								
 				if (s.equals("Candidate_EmailIds") && isMobileList) {
 					int p = cell.getColumnIndex();
 					for (int i = 4; i <= sheet.getLastRowNum(); i++) {

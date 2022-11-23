@@ -43,6 +43,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import gov.cdac.emailservice.models.CentreModel;
 import gov.cdac.emailservice.models.EmailModel;
 import gov.cdac.emailservice.models.ReportInfo;
 import gov.cdac.emailservice.models.TestEmailBulkModel;
@@ -143,7 +144,6 @@ public class EmailServiceController {
 	
 	@RequestMapping(value = "{reqType:icg|casb|afcat|icgOfficer}/upload", method = RequestMethod.POST)
 	public @ResponseBody ArrayList<String> handleFileUpload(@PathVariable String reqType, MultipartHttpServletRequest request) throws IOException {
-		System.out.println("\n\nUpload\n\n");
 		Iterator<String> iterator = request.getFileNames();
 		fileUploadService.createDirectory(reqType);
 		ArrayList<String> arr = new ArrayList<String>();
@@ -178,7 +178,6 @@ public class EmailServiceController {
 		ArrayList<File> filesUploaded = new ArrayList<File>();
 		ArrayList<JSONObject> jsonobjectarraylist = new ArrayList<JSONObject>();
 		filesUploaded = fileUploadService.findFiles(reqType);
-		System.out.println("\n\n===============\nFileUploaded:"+filesUploaded);
 		for (File file : filesUploaded) {
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("name", file.getName());
@@ -260,16 +259,13 @@ public class EmailServiceController {
 	public ResponseEntity<String> downloadExcel(@PathVariable String reqType, @PathVariable String scheduleId,
 			HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws NumberFormatException, IOException {
 		
-		System.out.println("emailScheduleId : "+scheduleId);
 		mailServiceFactory.extractReport(Long.parseLong(scheduleId), reqType, httpRequest, httpResponse);
 		return new ResponseEntity<String>(HttpStatus.OK);	
 	}
 
 	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}/searchByEmailId/{emailId}")
 	public ResponseEntity<List<ReportInfo>> searchByEmailId(@PathVariable String reqType, @PathVariable String emailId) throws NumberFormatException, IOException {
-		System.out.println("emailId : "+emailId);
 		List<ReportInfo> reportInfo = mailServiceFactory.searchByEmailId(emailId, reqType);
-		System.out.println("reportInfo : "+reportInfo);
 		if(reportInfo == null) {
 			reportInfo = new ArrayList<ReportInfo>();
 			return new ResponseEntity<List<ReportInfo>>(reportInfo, HttpStatus.OK);	
@@ -280,7 +276,6 @@ public class EmailServiceController {
 	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}/getUploadData/")
 	public ResponseEntity<List<ReportInfo>> getUploadedData(@PathVariable String reqType, @RequestParam("path") String path) throws NumberFormatException, IOException {
 		
-		System.out.println("get path : "+path);
 		List<ReportInfo> reportInfo = mailServiceFactory.getUploadDocPaths(path, reqType);
 		if(reportInfo == null) {
 			reportInfo = new ArrayList<ReportInfo>();
@@ -321,8 +316,17 @@ public class EmailServiceController {
 	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}/downloadTextFile")
 	public ResponseEntity<String> downloadTextFile2(@PathVariable String reqType, @RequestParam("path") String path, HttpServletRequest  httpRequest, HttpServletResponse httpResponse) throws NumberFormatException, IOException {
 		
-		System.out.println("download path : "+path);
 		mailServiceFactory.extractTextReport(path, reqType, httpRequest, httpResponse);
 		return new ResponseEntity<String>("Success", HttpStatus.OK);	
 	}
+	
+	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}/populateCenters/")
+	public ResponseEntity<List<CentreModel>> populateListOfCentres(@PathVariable String reqType) throws NumberFormatException, IOException {
+		
+		List<CentreModel> centreList = mailServiceFactory.populateListOfCentres(reqType);
+		
+		return new ResponseEntity<List<CentreModel>>(centreList, HttpStatus.OK);
+	}
+	
+	
 }

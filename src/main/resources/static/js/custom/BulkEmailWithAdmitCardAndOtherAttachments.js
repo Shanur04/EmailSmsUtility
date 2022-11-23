@@ -71,7 +71,7 @@ $(document).ready(function () {
 
 		$.ajax({
 			type: "POST",
-			url: "../populateIcgCenters",
+			url: '../'+$("#pageType").val()+"/populateCenters",
 			async: false,
 			dataType: "json",
 			success: function (response, textStatus, request) {

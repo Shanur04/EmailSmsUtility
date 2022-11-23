@@ -37,7 +37,6 @@ public class MailThreadExcel extends Thread {
 			String emailReason) {
 		super();
 
-		centerWiseSendEmail.info("inside constructor of " + Thread.currentThread().getName());
 		this.mailServerHost = mailServerHost;
 		this.mailServerPort = mailServerPort;
 		this.starttls = starttls;
@@ -46,8 +45,6 @@ public class MailThreadExcel extends Thread {
 		this.mailpassword = mailpassword;
 		this.emailSubject = emailSubject;
 		this.emailContent = emailContent;
-		centerWiseSendEmail.info("onehundredSubset.size() : " + onehundredSubset.size());
-
 		this.onehundredSubset.addAll(onehundredSubset);
 		this.fileArray = fileArray;
 		this.emailAttachmentDirFromPropFile = emailAttachmentDirFromPropFile;
@@ -166,8 +163,8 @@ public class MailThreadExcel extends Thread {
 	@Override
 	public void run() {
 		String threadName = Thread.currentThread().getName();
-		centerWiseSendEmail.info("inside run of " + threadName);
-		centerWiseSendEmail.info("oneHundredEmailIds.size() of " + threadName + " is " + onehundredSubset.size());
+		centerWiseSendEmail.info("Inside run of " + threadName);
+		//centerWiseSendEmail.info("oneHundredEmailIds.size() of " + threadName + " is " + onehundredSubset.size());
 		String emailId = null;
 		int mailNotSentCounter = 0;
 		
@@ -178,15 +175,15 @@ public class MailThreadExcel extends Thread {
 			if (!MailServiceImpl.sendMailCenterWise(mailServerHost, mailServerPort, starttls, socketFactoryPort,
 					mailUserName, mailpassword, emailId, emailSubject, emailContent, fileArray, true,
 					emailAttachmentDirFromPropFile, null)) {
-				centerWiseSendEmail.error("Mail Not Sent to : " + emailId + " due to Exception");
-				centerWiseSendEmail.info(emailId);
+				//centerWiseSendEmail.error("Mail Not Sent to : " + emailId + " due to Exception");
+				//centerWiseSendEmail.info(emailId);
 				mailNotSentSet.add(emailId);
 				mailNotSentCounter++;
 			} else {
 				mailSentSet.add(emailId);
 			}
 		}
-		centerWiseSendEmail.error("mailNotSentCounter in " + threadName + " Batch : " + mailNotSentCounter);
-		centerWiseSendEmail.info("mailSentCounter in " + threadName + " Batch : " + mailSentSet.size());
+		//centerWiseSendEmail.error("mailNotSentCounter in " + threadName + " Batch : " + mailNotSentCounter);
+		//centerWiseSendEmail.info("mailSentCounter in " + threadName + " Batch : " + mailSentSet.size());
 	}
 }

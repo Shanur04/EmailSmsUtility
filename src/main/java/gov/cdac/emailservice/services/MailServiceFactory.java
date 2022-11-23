@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import gov.cdac.emailservice.models.CentreModel;
 import gov.cdac.emailservice.models.EmailModel;
 import gov.cdac.emailservice.models.ReportInfo;
 import gov.cdac.emailservice.models.TestEmailBulkModel;
@@ -60,7 +61,6 @@ public class MailServiceFactory {
      */
     public Map<String, Object> getPageData(String reqType) {
 		if (reqType.equalsIgnoreCase("icg")) {
-			System.out.println("icg");
 		    return icgMailService.getPageData();
 		} else if (reqType.equalsIgnoreCase("casb")) {
 		    return casbMailService.getPageData();
@@ -192,6 +192,20 @@ public class MailServiceFactory {
 		   return afcatMailService.getPath(emailId, filePath);
 		} else if (reqType.equalsIgnoreCase("icgOfficer")) {
 		    return icgOfficerMailService.getPath(emailId, filePath);
+		}
+		return null;
+	}
+
+
+	public List<CentreModel> populateListOfCentres(String reqType) {
+		if (reqType.equalsIgnoreCase("icg")) {
+		    return icgMailService.populateListOfCentres();
+		} else if (reqType.equalsIgnoreCase("casb")) {
+			return casbMailService.populateListOfCentres();
+		} else if (reqType.equalsIgnoreCase("afcat")) {
+		   return afcatMailService.populateListOfCentres();
+		} else if (reqType.equalsIgnoreCase("icgOfficer")) {
+		    return icgOfficerMailService.populateListOfCentres();
 		}
 		return null;
 	}

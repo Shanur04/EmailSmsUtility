@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.FileHandler;
+import java.util.logging.SimpleFormatter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +57,7 @@ import gov.cdac.emailservice.afcat.repository.EmailTextReportDetailsRepository;
 import gov.cdac.emailservice.afcat.repository.ExamMasterRepository;
 import gov.cdac.emailservice.afcat.repository.ExamSlotRepository;
 import gov.cdac.emailservice.excel.UserExcelExporter;
+import gov.cdac.emailservice.models.CentreModel;
 import gov.cdac.emailservice.models.EmailModel;
 import gov.cdac.emailservice.models.ReportInfo;
 import gov.cdac.emailservice.models.TestEmailBulkModel;
@@ -101,9 +105,13 @@ public class AfcatMailService implements MailService {
 	
 	@Value("${filePath.downloadExcelReportDownloadDir}")
 	private String downloadExcelReportDownloadDir;
+	
+	private FileHandler fh; 
 
 	private static final Logger centerWiseSendEmail = Logger.getLogger("CenterWiseSendEmail");
 	private static final Logger acknowledgementOfSentEmail = Logger.getLogger("CenterWiseSendEmail");
+
+	private static final java.util.logging.Logger AFCATMAILSENTLOGGER = java.util.logging.Logger.getLogger(AfcatMailService.class.getName());
 
 	private ArrayList<String> notSentEmailIds = new ArrayList<String>();
 
@@ -166,10 +174,8 @@ public class AfcatMailService implements MailService {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
 
 		if (mainFile.isFile()) {
-			System.out.println("is File : "+mainFile.getName());
 
 			if (mainFile.getName().indexOf(".txt") > -1) {
-				System.out.println("text");
 				httpResponse.setContentType("text/plain");
 			}else {
 				FileInputStream in = new FileInputStream(mainFile);
@@ -249,7 +255,7 @@ public class AfcatMailService implements MailService {
 		System.out.println("Report generated for : "+emailSentId+" | "+emailScheduleId);
 		AfcatEmailReportDetail report = emailReportDetailRepository.findByEmailSentIdAndEmailScheduleId(emailSentId, emailScheduleId);
 		if (report == null) {
-			System.out.println("report is null : 1st scheduler..!!!");
+			System.out.println("Report is null : 1st scheduler..!!!");
 			UserExcelExporter exp = new UserExcelExporter(appCredIds, emailIds, subject, body, sentType, reqType);
 			try {
 				Path path = exp.export1();
@@ -271,6 +277,27 @@ public class AfcatMailService implements MailService {
 	}
 	
 	public String addEmailSentEntry(EmailModel emailModel, String emailType, String reqType, HttpServletRequest request) {
+		try {  
+			 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");  
+			 LocalDateTime now = LocalDateTime.now();  
+	        fh = new FileHandler("D:/EmailSMS/email_sent_logs/afcat/"+emailModel.getMailReason()+"_"+dtf.format(now)+".log");
+	        SimpleFormatter formatter = new SimpleFormatter();  
+	        fh.setFormatter(formatter); 
+	        
+	        AFCATMAILSENTLOGGER.addHandler(fh);
+	        
+	        // the following statement is used to log any messages  
+	        AFCATMAILSENTLOGGER.info("AFCAT : "+emailModel.getMailReason());  
+	        AFCATMAILSENTLOGGER.info("Date & Time : "+dtf.format(now)); 
+	        AFCATMAILSENTLOGGER.info("Email Subject : "+emailModel.getEmailSubject()); 
+	        AFCATMAILSENTLOGGER.info("Email Body : "+emailModel.getEmailContent());
+	        
+	    } catch (SecurityException e) {  
+	        e.printStackTrace();  
+	    } catch (IOException e) {  
+	        e.printStackTrace();  
+	    } 
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("disableEnableButtons", "disable");
 		notSentEmailIds.clear();
@@ -356,7 +383,8 @@ public class AfcatMailService implements MailService {
 				centerWiseSendEmail.info(emailIdAndHallTicketNumber.getKey() + "/" + emailIdAndHallTicketNumber.getValue());
 			}
 			centerWiseSendEmail.info("allEmailIdsAndHallTicketNumbers.size() : " + allEmailIdsAndHallTicketNumbers.size());
-		
+			
+			AFCATMAILSENTLOGGER.info("Total Count : "+emailIds.size());
 			emailSent = emailSentRepository.save(new AfcatEmailSent(examMasterRepository.getOne(1), emailIds.size(), 
 					emailModel.getEmailSubject(), emailModel.getEmailContent(), emailModel.getMailReason(),
 					new Timestamp(System.currentTimeMillis()), emailModel.getSentType(), false, emailModel.getPageType(),
@@ -398,8 +426,10 @@ public class AfcatMailService implements MailService {
 			}
 			if (attachmentPath.size() > 0) {
 				emailSent.setAttachmentPath(attachmentPath.toString());
+				AFCATMAILSENTLOGGER.info("Attachment : true :: Count : "+attachmentPath.size());
 			} else {
 				emailSent.setAttachmentPath(null);
+				AFCATMAILSENTLOGGER.info("Attachment : false");
 			}
 			
 			if (emailModel.getSentType() == 1 || emailModel.getSentType() == 2) {
@@ -454,8 +484,12 @@ public class AfcatMailService implements MailService {
 			}
 			
 			if(emailModel.getSentType() == 1 || emailModel.getSentType() == 2) {
+				AFCATMAILSENTLOGGER.info("Quick Mail");
+				
 				sendEmailAsync(emailIds, null, emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()));
 			}else {
+				AFCATMAILSENTLOGGER.info("Scheduled Mail");
+				
 				generateReport(emailIds, null, emailSent.getEmailSentId(), emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()),
 					emailModel.getEmailSubject(), emailModel.getEmailContent(), emailModel.getSentType(), reqType);
 			}
@@ -607,8 +641,8 @@ public class AfcatMailService implements MailService {
 							centerWiseSendEmail.info("oneHundredSubSetOfMap.size() : " + oneHundredSubset.size());
 							
 							//host : smtp.cdac.in | port : 25
-							mailThreadArray[arrayIndex] = new MailThreadExcel("smtp.cdac.in",
-									"25", emailSent.getStarttls(),
+							mailThreadArray[arrayIndex] = new MailThreadExcel("mailgw-dr.noida.cdac.in",
+									"587", emailSent.getStarttls(),
 									emailSent.getSocketFactoryPort(), mailUserName, mailPassword,
 									emailSent.getSubject(), emailSent.getBody(),
 									oneHundredSubset, fileArray, emailAttachmentDirFromPropertyFile+emailSentId+File.separator,
@@ -1369,6 +1403,12 @@ public class AfcatMailService implements MailService {
 
 	@Override
 	public String getPath(String emialId, String filePath) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CentreModel> populateListOfCentres() {
 		// TODO Auto-generated method stub
 		return null;
 	}
