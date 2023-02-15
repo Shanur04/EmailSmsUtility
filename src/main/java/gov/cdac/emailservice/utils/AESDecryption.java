@@ -18,7 +18,7 @@ public class AESDecryption {
     private static final String KEY = "icgseatAllocationkey";
 
     public static String decrypt(String cipherText) throws Exception {
-    	System.out.println("cipherText : "+cipherText);
+    	//System.out.println("cipherText : "+cipherText);
 
 	byte[] cipherData = Base64.getDecoder().decode(cipherText);
 	byte[] saltData = Arrays.copyOfRange(cipherData, 8, 16);

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ICG Seat Allocation: Seat Allocation Registration</title>
+<title>Email Utility: Registration</title>
 <!-- Favicon icon -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -13,7 +13,22 @@
 	th:href="@{/images/favicon.png}">
 
 </head> 
-
+<style>
+#emailSignInPage{
+	background-image: url('https://learn.g2.com/hubfs/iStock-517551275.jpg');
+}
+h3, h4{
+	color:white;
+}
+.alert-danger {
+    color: #121212;
+    background-color: #db4b4b;
+    border-color: #d55353;
+}
+.login-input .form-group .form-control{
+	color:white;
+}
+</style>
 <body class="h-100">
 
 	<!--*******************
@@ -31,30 +46,30 @@
         Preloader end
     ********************-->
 
-	<div class="login-form-bg h-100">
+	<div class="login-form-bg h-100" id="emailSignInPage">
 		<div class="container h-100">
 			<div class="row justify-content-center h-100">
 				<div class="col-xl-6">
 					<div class="form-input-content">
-						<div class="card login-form mb-0">
+						<div class="card login-form mb-0" style="background-color:rgba(0,0,0,0.7); color:white;">
 							<div class="card-body pt-5">
 
 								<a class="text-center" href="#">
-									<h3>ICG Seat Allocation</h3>
+									<h3>Email Utility</h3>
 									<h4>Registration</h4>
 								</a>
 
-								<form th:action="@{/registerNewSeatAllocator}"
+								<form th:action="@{/registerNewAdmin}"
 									th:object="${sysUserObj}" class="mt-5 mb-5 login-input"
 									method="post" autocomplete="off" id="registrationForm">
-									<div th:if="${error}">
+									<div th:if="${error} != null">
 										<div class="alert alert-danger">
 											<h4 th:text="${error}"></h4>
 										</div>
 									</div>
-									<div th:if="${success}">
-										<div class="alert alert-success">
-											<h4 th:text="${success}"></h4>
+									<div th:if="${success} != null">
+										<div class="alert">
+											<p style="font-size:larger;" th:text="${success}"></p>
 										</div>
 									</div>
 									<div class="form-group">
@@ -75,7 +90,7 @@
 								</form>
 								<p class="mt-5 login-form__footer">
 									Go to Login? <a
-										th:href="@{/seatAllocation/loginSeatAllocation}"
+										th:href="@{/emailLogin}"
 										class="text-primary" style="cursor: pointer;">Sign In</a> now
 								</p>
 							</div>

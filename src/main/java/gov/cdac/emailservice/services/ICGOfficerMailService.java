@@ -1,5 +1,9 @@
 package gov.cdac.emailservice.services;
-
+/**
+ * 
+ * @author shanurj
+ *
+ */
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -283,7 +287,8 @@ public class ICGOfficerMailService implements MailService {
 		try {  
 			 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");  
 			 LocalDateTime now = LocalDateTime.now();  
-	        fh = new FileHandler("D:/EmailSMS/email_sent_logs/icg_offier/"+emailModel.getMailReason()+"_"+dtf.format(now)+".log");
+	        fh = new FileHandler("D:/EmailSMS/email_sent_logs/icg_officer/"+emailModel.getMailReason()+"_"+dtf.format(now)+".log");
+	  
 	        SimpleFormatter formatter = new SimpleFormatter();  
 	        fh.setFormatter(formatter); 
 	        
@@ -642,8 +647,9 @@ public class ICGOfficerMailService implements MailService {
 							centerWiseSendEmail.info("oneHundredSubSetOfMap.size() : " + oneHundredSubset.size());
 							
 							//host : smtp.cdac.in | port : 25
+							//10.226.64.51
 							mailThreadArray[arrayIndex] = new MailThreadExcel("mailgw-dr.noida.cdac.in",
-									"25", emailSent.getStarttls(),
+									"587", emailSent.getStarttls(),
 									emailSent.getSocketFactoryPort(), mailUserName, mailPassword,
 									emailSent.getSubject(), emailSent.getBody(),
 									oneHundredSubset, fileArray, emailAttachmentDirFromPropertyFile+emailSentId+File.separator,
@@ -653,7 +659,6 @@ public class ICGOfficerMailService implements MailService {
 							arrayIndex++;
 						}
 					}
-					centerWiseSendEmail.info("outside oneThousand for loop");
 					for (int i = 0; i < mailThreadArray.length; i++) {
 						mailThreadArray[i].start();
 					}
@@ -701,14 +706,14 @@ public class ICGOfficerMailService implements MailService {
 
 			generateReport(emailIdList, appCredIdsFromFile, emailSentId, emailScheduleDeailId,
 					emailSent.getSubject(), emailSent.getBody(), emailSent.getEmailSentType(), emailSent.getReqType());
-			uploadEmailInTable(new ArrayList<>(emailIdList));
-			for (String id : emailIdList) {
-				try {
-					writeHelpContent(emailSentId, id, SentEmailIds.contains(id), fileArray);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+//			uploadEmailInTable(new ArrayList<>(emailIdList));
+//			for (String id : emailIdList) {
+//				try {
+//					writeHelpContent(emailSentId, id, SentEmailIds.contains(id), fileArray);
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
 		}
 	}
 	
@@ -1328,7 +1333,7 @@ public class ICGOfficerMailService implements MailService {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm");
 		String reportFolderPath = emailTextReportDetailsRepository.findReportPathByEmailId(emailId);
 
-		System.out.println("Afcat reportFolderPath : "+reportFolderPath+"\n\n");
+		System.out.println("ICG Officer reportFolderPath : "+reportFolderPath+"\n\n");
 		File file = new File(reportFolderPath + "\\" + emailSentId+"_"+icgOfficerEmailSent.getReasonForEmail() + "-"
 				+ java.time.LocalDateTime.now().format(format)+".txt");
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));

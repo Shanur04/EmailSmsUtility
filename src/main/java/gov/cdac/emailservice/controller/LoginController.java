@@ -29,7 +29,7 @@ import gov.cdac.emailservice.validator.InputValidator;
 
 /**
  * <p>Login page redirection </p>
- * @author Kunal Mande
+ * @author shanurj
  */
 
 @RestController
@@ -50,7 +50,6 @@ public class LoginController {
 	 */
 	@GetMapping(value = {"/"})
 	public ModelAndView redirectToCandidateLogin(Model model) {
-		System.out.println("0");
 		if(!model.containsAttribute("error"))
 		{
 		return new ModelAndView(LOGINREDIRECTION);
@@ -109,16 +108,16 @@ public class LoginController {
 	@GetMapping(value = "/emailRegister")
 	public ModelAndView registerUser(Model model, HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		ModelAndView mav = new ModelAndView("emailRegistrationPage");
+		ModelAndView mav = new ModelAndView("EmailRegistrationPage");
 		if (!model.containsAttribute("sysUserObj"))
 			mav.addObject("sysUserObj", new SystemUserCredential());
 		return mav;
 	}
 	
-	@PostMapping(value = "/registerNewSeatAllocator")
+	@PostMapping(value = "/registerNewAdmin")
 	public ModelAndView registerNewSeatAllocator(@Valid @ModelAttribute SystemUserCredential sysUserObj, BindingResult bindingResult,
 			RedirectAttributes redirectAttributes,Authentication auth) throws Exception {
-		ModelAndView mav = new ModelAndView("redirect:/emailRegistration");
+		ModelAndView mav = new ModelAndView("redirect:/emailRegister");
 		
 		if (bindingResult.hasErrors()) {
 			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.sysUserObj",
@@ -159,23 +158,34 @@ public class LoginController {
 		
 		if(!sysUserList.isEmpty()) {
 			for (SystemUserCredential systemUserCredential : sysUserList) {
+				System.out.println(systemUserCredential.getEmail());
+				System.out.println(sysUserObj.getEmail());
 				if(systemUserCredential.getEmail().equalsIgnoreCase(sysUserObj.getEmail())) {
 					redirectAttributes.addFlashAttribute("error", "Email Id should be unique");
-					redirectAttributes.addFlashAttribute("sysUserObj", sysUserObj);
+					redirectAttributes.addFlashAttribute("success", null);
+					redirectAttributes.addFlashAttribute("sysUserObj", new SystemUserCredential());
+					mav.addObject("error", "Email Id should be unique");
+					mav.addObject("sysUserObj", new SystemUserCredential());
 					return mav;
 				}
 			}
+		} else {
+			mav.addObject("sysUserObj", new SystemUserCredential());
 		}
 		
 		sysUserObj.setPassword(password);
-		
+				
 		Boolean saveSysUserCred = loginService.saveSysUserCred(sysUserObj);
-		if(saveSysUserCred)
+		if(saveSysUserCred) {
 			redirectAttributes.addFlashAttribute("success", "Registration Complete");
-		else {
-			redirectAttributes.addFlashAttribute("error", "Some error , Please try again");
-			redirectAttributes.addFlashAttribute("sysUserObj", sysUserObj);
-		}
+			mav.addObject("success", "Registration Complete");
+			mav.addObject("sysUserObj", new SystemUserCredential());
+		} else {
+			redirectAttributes.addFlashAttribute("error", "Some error occurred!, Please try again");
+			mav.addObject("error", "Some error occurred!, Please try again");
+			mav.addObject("sysUserObj", sysUserObj);
+		}	
+		
 		return mav;
 	}
 	

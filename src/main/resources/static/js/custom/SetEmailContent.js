@@ -7,9 +7,7 @@ $(document)
 					$('#reportBody').empty();
 					$("#reportDiv").hide();
 					$(".closeSearchByEmailId").hide();
-					
-					$("#table_previousEmail").DataTable();
-					
+										
 					$('#defaultConfigCheckBox').change(function() {
 						if (this.checked) {
 							var returnVal = "checkbox is checked";
@@ -292,7 +290,7 @@ $(document)
 					});
 					
 					$('#table_previousEmail').DataTable();
-					$("reportTable").DataTable();
+					$("#reportTable").DataTable();
 				});
 
 function downloadExcel(scheduleId) {
@@ -567,4 +565,8 @@ $(".closeSearchByEmailId").on('click', function() {
 	$("#ipEmailId").val('')
 	$("#reportDiv").hide();
 	$(".closeSearchByEmailId").hide();
+});
+
+$("#showOldEmailSentBtn").on('click', function(){
+	$("#showHistoryOfEmailSentModal").modal("show")
 })

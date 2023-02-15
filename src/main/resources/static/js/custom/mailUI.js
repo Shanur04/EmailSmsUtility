@@ -10,7 +10,6 @@ $(document).ready(function(e) {
 	// .stringify(jsonObj)
 	}).done(function(data) {
 
-		console.log(data)
 		if (data.status == "success") {
 			if (data.samePost != null) {
 				$("#totalSamePost").text(data.samePost);
@@ -52,7 +51,6 @@ $('input[type=radio][name=postRadio]').change(function() {
 	// .stringify(jsonObj)
 	}).done(function(data) {
 
-		console.log(data)
 		if (data.status == "success") {
 			if (data.count != null) {
 				$("#statusCount").text(data.count);

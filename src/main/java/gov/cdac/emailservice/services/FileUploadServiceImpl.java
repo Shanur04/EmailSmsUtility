@@ -67,6 +67,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 		else if(reqType.equalsIgnoreCase("casb"))
 			source = new File(emailAttachmentDirFromPropertyFileCASB+fileToSave.getName());
 
+		System.out.println(source);
 		File dest = new File(path+fileToSave.getName());
 		try {
 		    FileUtils.copyFile(source, dest);
@@ -287,7 +288,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 	@Override
 	public ArrayList<File> findFiles(String reqType) {
 		//Creating a File object for directory
-	      
+	      System.out.println("reqType : "+reqType);
 	      File directoryPath = null;
 			if(reqType.equalsIgnoreCase("icg"))
 				directoryPath = new File(emailAttachmentDirFromPropertyFileICG);
@@ -298,6 +299,7 @@ public class FileUploadServiceImpl implements FileUploadService{
 			else if(reqType.equalsIgnoreCase("casb"))
 				directoryPath = new File(emailAttachmentDirFromPropertyFileCASB);
 			
+		System.out.println(directoryPath);
 	      //List of all files and directories
 	      File[] listFiles = directoryPath.listFiles();
 	      ArrayList<File> finalFiles = new ArrayList<File>();

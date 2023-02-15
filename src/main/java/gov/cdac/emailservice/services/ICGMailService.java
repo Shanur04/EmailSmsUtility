@@ -1,5 +1,9 @@
 package gov.cdac.emailservice.services;
-
+/**
+ * 
+ * @author shanurj
+ *
+ */
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -286,8 +290,6 @@ public class ICGMailService implements MailService {
 	public void uploadEmailInTable(ArrayList<String> emailIds) {
 		Long count = emailTextReportDetailsRepository.count() + 1;
 		for (String emailId : emailIds) {
-			System.out.println("emailId"+emailId);
-			System.out.println(emailTextReportDetailsRepository.findReportPathByEmailId(emailId));
 			if (emailTextReportDetailsRepository.findReportPathByEmailId(emailId) == null) {
 				System.out.println("not null");
 				String path1 = icgTextReportDownloadDir + count;
@@ -348,7 +350,7 @@ public class ICGMailService implements MailService {
 	        ICGMAILSENTLOGGER.addHandler(fh);
 	        
 	        // the following statement is used to log any messages  
-	        ICGMAILSENTLOGGER.info("AFCAT : "+emailModel.getMailReason());  
+	        ICGMAILSENTLOGGER.info("ICG : "+emailModel.getMailReason());  
 	        ICGMAILSENTLOGGER.info("Date & Time : "+dtf.format(now)); 
 	        ICGMAILSENTLOGGER.info("Email Subject : "+emailModel.getEmailSubject()); 
 	        ICGMAILSENTLOGGER.info("Email Body : "+emailModel.getEmailContent());
@@ -738,7 +740,7 @@ public class ICGMailService implements MailService {
 						try {
 							mailThreadArray[i].join();
 							SentEmailIds.addAll(mailThreadArray[i].getMailSentSet());
-							System.out.println("Last Email Id : "+SentEmailIds.get(SentEmailIds.size()-1) + "\n\nCount : "+outerExitCounter);
+							System.out.println("Last Email Id : "+SentEmailIds.get(SentEmailIds.size()-1) + "\nCount : "+outerExitCounter);
 						} catch (InterruptedException e) {
 							centerWiseSendEmail.info("inside InterruptedException of sendBulkEmailsFromExcel-join");
 							e.printStackTrace();

@@ -1,5 +1,9 @@
 package gov.cdac.emailservice.services;
-
+/**
+ * 
+ * @author shanurj
+ *
+ */
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -113,8 +117,10 @@ public class MailServiceImpl {
 			LocalDateTime now = LocalDateTime.now(); 
 			if(personal.equalsIgnoreCase("AFCAT"))
 				AFCATMAILSENTLOGGER.info("Email Id : "+ to + " Sent Date & Time : "+dtf.format(now));
-			else if(personal.equalsIgnoreCase("ICG"))
+			else if(personal.equalsIgnoreCase("ICG")) {
 				ICGMAILSENTLOGGER.info("Email Id : "+ to + " Sent Date & Time : "+dtf.format(now));
+				ICGOFFICERMAILSENTLOGGER.info("Email Id : "+ to + " Sent Date & Time : "+dtf.format(now));
+			}
 			else
 				CASBMAILSENTLOGGER.info("Email Id : "+ to + " Sent Date & Time : "+dtf.format(now));
 				

@@ -1,9 +1,13 @@
 package gov.cdac.emailservice.services;
+/**
+ * 
+ * @author shanurj
+ *
+ */
 
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +19,7 @@ import gov.cdac.emailservice.icg.pojo.UserRole;
 import gov.cdac.emailservice.icg.repositories.SystemUserCredentialsRepository;
 
 
-/**
- * 
- * @author kunalm
- *
- */
-
-@Service
-@Transactional
+@Service("icgLoginService")
 public class LoginServiceImpl implements LoginService  {
 	
 	@Autowired
@@ -37,9 +34,9 @@ public class LoginServiceImpl implements LoginService  {
 	public Boolean saveSysUserCred(@Valid SystemUserCredential sysUserObj) throws Exception{
 		try {
 			UserRole userRole = new UserRole();
-			userRole.setRoleId(11);                          // Hard Coded the user role of seat allocator
+			userRole.setRoleId(11);
+			sysUserObj.setUserRole(userRole);// Hard Coded the user role of seat allocator
 			sysUserObj.setStatus(true);
-			sysUserObj.setUserRole(userRole);
 			sysUserObj.setPasswordResetStatus(false);
 			sysUserObj.setRecordTracking(new Timestamp(System.currentTimeMillis()));
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); 

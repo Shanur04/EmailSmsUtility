@@ -1,5 +1,9 @@
 package gov.cdac.emailservice.controller;
-
+/**
+ * 
+ * @author shanurj
+ *
+ */
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -181,7 +185,7 @@ public class EmailServiceController {
 		for (File file : filesUploaded) {
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("name", file.getName());
-			Path paths = file.toPath();
+			/* Path paths = file.toPath(); */
 			jsonObject.put("file", file);
 			jsonObject.put("size", file.length());
 			jsonobjectarraylist.add(jsonObject);

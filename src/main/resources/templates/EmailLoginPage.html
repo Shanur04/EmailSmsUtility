@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ICG Seat Allocation: Sign in</title>
+<title>Email Utility: Sign in</title>
 <!-- Favicon icon -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 <link th:href="@{/css/style.css}" rel="stylesheet">
@@ -23,9 +23,23 @@
 .pwd{
 display: inline;
 }
+#emailSignUpPage{
+	background-image: url('https://learn.g2.com/hubfs/iStock-517551275.jpg');
+}
+h3, h4{
+	color:white;
+}
+.alert-danger {
+    color: #121212;
+    background-color: #db4b4b;
+    border-color: #d55353;
+}
+.login-input .form-group .form-control{
+	color:white;
+}
 </style>
 <script>
-     function RemoveSavedPassword() {
+     /*function RemoveSavedPassword() {
          if (typeof  jQuery.support.webkit == "undefined") {
              var inputValue = $('.real-input').val();
              //alert(inputValue)
@@ -38,9 +52,7 @@ display: inline;
         	//alert(showText)
         	$('.fake-input').val(showText);
     	}
- 	} 
-      
- 
+ 	}*/
 
       function RemoveSavedPassword(){
     	 const togglePassword = document.getElementById('#togglePassword');
@@ -84,12 +96,12 @@ display: inline;
         	Preloader end
     	********************-->
 
-		<div class="login-form-bg h-100" >
+		<div class="login-form-bg h-100" id="emailSignUpPage">
 			<div class="container h-100">
 				<div class="row justify-content-center h-100">
 					<div class="col-xl-6">
 						<div class="form-input-content">
-							<div class="card login-form mb-0">
+							<div class="card login-form mb-0" style="background-color:rgba(0,0,0,0.7); color:white;">
 								<div class="card-body pt-5">
 								<a class="text-center" href="#">
 									<h3>Email Service</h3>
@@ -100,12 +112,12 @@ display: inline;
 										id="mailSentLoginForm" method="post" autocomplete="off"
 										class="mt-5 mb-5 login-input">
 										<div th:if="${error}">
-											<div class="alert alert-danger">
+											<div class="alert alert-danger" style="color:black;">
 												<h4 th:text="${error}"></h4>
 											</div>
 										</div>
 										<div th:if="${success}">
-											<div class="alert alert-success">
+											<div class="alert alert-success" style="color:black;">
 												<h4 th:text="${success}"></h4>
 											</div>
 										</div>

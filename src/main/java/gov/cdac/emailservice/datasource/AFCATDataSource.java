@@ -20,7 +20,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * 
- * @author shiri
+ * @author shanurj
  *
  */
 @Configuration

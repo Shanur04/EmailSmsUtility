@@ -19,7 +19,7 @@ import gov.cdac.emailservice.services.MailServiceImpl;
 
 /**
  * this class extends Thread class of Java
- * @author mohit
+ * @author mohit & shanurj
  *
  */
 public class AfcatMailThread extends Thread{

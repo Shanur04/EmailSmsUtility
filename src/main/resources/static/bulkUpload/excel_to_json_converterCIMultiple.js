@@ -8,10 +8,15 @@ $(document)
 					
 					$("#loading").hide();
 					
+					//CKEDITOR.replace( 'editor1' );
+					
+					//Mail Reason Validations
 					$("#mailReason").on("change", function(){
-						var name = ($(this).val()).replace(/[a-zA-Z0-9 ]/g, "");
+						var name = ($(this).val()).replace(/[a-zA-Z0-9 _-]/g, "");
 						if(name != ""){
 							alert("Mail Reason can not contain any special character!")
+							$(this).val("");
+							return;
 						}
 					});
 
@@ -32,10 +37,9 @@ $(document)
 							    	dataType: "json",
 								    success: function(data) 
 								    {
-									    for(var i=0;i<data.length;i++)
-						   	    	{ 
-						       			obj.createProgress(data[i]["name"],data[i]["file"],data[i]["size"]);
-						       		}
+									    for(var i=0;i<data.length;i++) { 
+									    	obj.createProgress(data[i]["name"],data[i]["file"],data[i]["size"]);
+									    }
 							        }
 								});
 						  },
@@ -225,7 +229,6 @@ $(document)
 							.change(
 									function(e) {
 
-										// alert("Haiiai");
 										e.preventDefault();
 										editorAce1
 												.setValue("Please wait while loading your file.");
@@ -339,8 +342,6 @@ $(document)
 										var str = "";
 										if (sentEmailType == '2' || sentEmailType == '3') {
 											$("#scheduleTableBody tr").each(function(index, tr) {
-												console.log("index : "+ index+ " tr : "+ tr)
-												console.log("inputs : "+ $($($($(this).get()).children().get(1)).find('input').get(0)).val())
 												for (var i = 0; i < ($($($(this).get()).children().get(2)).find('input').get().length); i++) {
 													var refTimes = $($($($(this).get()).children().get(2)).find('input').get(i)).val();							
 													str += $($($($(this).get()).children().get(1)).find('input').get(0)).val()+ "T"+ refTimes+ ",";
@@ -483,7 +484,6 @@ $(document)
 											postRadio:postRadio
 										};
 
-										console.log(jsonObj)
 										$
 												.ajax(
 														{
@@ -525,7 +525,6 @@ $(document)
 														function(xhr, err) {
 															var errData = "<br/>";
 															var data = xhr.responseText;
-															console.log(data)
 															$(
 																	"#errorModalMessage")
 																	.html(data);
@@ -537,7 +536,6 @@ $(document)
 																	"").hide();
 														});
 
-										console.log(jsonObj)
 										$('#loading').html("").hide();
 
 									})
@@ -559,7 +557,6 @@ $(document)
 					}
 
 					function Unix_timestamp(timestamp) {
-						console.log("TSatamp " + timestamp);
 						var d = new Date(timestamp * 1000), // Convert the
 						// passed timestamp
 						// to milliseconds
@@ -580,10 +577,6 @@ $(document)
 						} else if (hh == 0) {
 							h = 12;
 						}
-
-						// ie: 2013-02-18, 8:35 AM
-						// time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' +
-						// min + ' ' + ampm;
 
 						time = dd + '-' + mm + '-' + yyyy;
 
@@ -611,8 +604,6 @@ $(document)
 					}
 					function builddata(JSON_DATA) {
 						var obj = $.parseJSON(JSON_DATA);
-						console.log(obj.Sheet1.length);
-						console.log(obj.Sheet1);
 						$('#example').DataTable({
 							"aaData" : obj.Sheet1,
 							"aoColumns" : [
@@ -620,8 +611,7 @@ $(document)
 							// { "sTitle": "Contact Number", "mData":
 							// "contact_number" },
 							{
-								"sTitle" : "Email ID",
-								"mData" : "email_id"
+								"sTitle" : "Email ID", "mData" : "email_id"
 							}
 							// { "sTitle": "User Description", "mData":
 							// "userDesc" },
@@ -653,7 +643,6 @@ $(document)
 
 
 function makeDivEnabledOrDisabled(id1, status) {
-	console.log(status, " : ", id1)
 	if (status === true) {
 		$("#" + id1).show();
 		$("#quickScheduleBtn").show();
@@ -683,7 +672,6 @@ function toDateChange(btn) {
 	}
 	if ($("#fromDate1").val().length != 0 && $("#toDate1").val().length != 0) {
 		if (btn == 'btn1') {
-			console.log(btn)
 			$("#sect1").show();
 			$("#sect2").hide();
 		} else {

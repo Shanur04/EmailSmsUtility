@@ -1,5 +1,9 @@
 package gov.cdac.emailservice.datasource;
-
+/**
+ * 
+ * @author shanurj
+ *
+ */
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;

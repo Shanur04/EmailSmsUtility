@@ -1,5 +1,9 @@
 package gov.cdac.emailservice.services;
-
+/**
+ * 
+ * @author shanurj
+ *
+ */
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -148,7 +152,6 @@ public class CasbMailService implements MailService {
 		Map<String, Object> pageDataMap = new HashMap<>();
 		Integer examMasterId = examMasterRepository.getActiveExamId();
 		pageDataMap.put("emailReasons", emailReasonMasterRepository.findAllByOrderByEmailReason());
-		System.out.println("emailSentRepository.findEmailSentSummary() : "+emailSentRepository.findEmailSentSummary());
 		pageDataMap.put("emailSent", emailSentRepository.findEmailSentSummary());
 		pageDataMap.put("centres", centreMasterRepository.findAllCentres(examMasterId));
 		pageDataMap.put("slots", examSlotRepository.findByOrderByCode());
@@ -164,7 +167,6 @@ public class CasbMailService implements MailService {
 		public void extractExcelReport(Long scheduleId, HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException {
 			Long emailSentId = (emailScheduleDetailRepository.findById(scheduleId).get()).getEmailSent().getEmailSentId();
 			CasbEmailReportDetail report = emailReportDetailRepository.findByEmailSentIdAndEmailScheduleId(emailSentId, scheduleId);
-			System.out.println("Path : "+report.getFilePath());
 			UserExcelExporter exp = new UserExcelExporter(report.getFilePath());
 			exp.extractFile();			
 		}
@@ -175,10 +177,8 @@ public class CasbMailService implements MailService {
 			DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
 
 			if (mainFile.isFile()) {
-				System.out.println("is File : "+mainFile.getName());
 
 				if (mainFile.getName().indexOf(".txt") > -1) {
-					System.out.println("text");
 					httpResponse.setContentType("text/plain");
 				}else {
 					FileInputStream in = new FileInputStream(mainFile);
@@ -186,7 +186,6 @@ public class CasbMailService implements MailService {
 					File newFile = new File(
 							downloadExcelReportDownloadDir+"file_" + java.time.LocalDateTime.now().format(format)
 									+ mainFile.getName().substring(mainFile.getName().lastIndexOf(".")));
-					System.out.println("\n\nnewFile"+newFile.getAbsolutePath());
 					FileOutputStream out = new FileOutputStream(newFile);
 
 					try {
@@ -234,18 +233,13 @@ public class CasbMailService implements MailService {
 		public void uploadEmailInTable(ArrayList<String> emailIds){
 			Long count = emailTextReportDetailsRepository.count() + 1;
 			for (String emailId : emailIds) {
-				System.out.println("emailId"+emailId);
-				System.out.println(emailTextReportDetailsRepository.findReportPathByEmailId(emailId));
 				if (emailTextReportDetailsRepository.findReportPathByEmailId(emailId) == null) {
-					System.out.println("not null");
 					String path1 = casbTextReportDownloadDir + count;
 					File theDir1 = new File(path1);
 					if (!theDir1.exists()) {
 						theDir1.mkdirs();
 					}
 					
-					System.out.println("Path : "+path1);
-
 					CasbEmailTextReportDetails casbEmailTextReportDetails = new CasbEmailTextReportDetails(emailId, path1);
 
 					emailTextReportDetailsRepository.save(casbEmailTextReportDetails);
@@ -257,7 +251,6 @@ public class CasbMailService implements MailService {
 		@Async
 		public void generateReport(List<String> emailIds, List<Long> appCredIds, Long emailSentId, Long emailScheduleId,
 				String subject, String body, int sentType, String reqType) {
-			System.out.println("Report generated for : "+emailSentId+" | "+emailScheduleId);
 			CasbEmailReportDetail report = emailReportDetailRepository.findByEmailSentIdAndEmailScheduleId(emailSentId, emailScheduleId);
 			if (report == null) {
 				System.out.println("Report is null : 1st scheduler..!!!");
@@ -282,8 +275,6 @@ public class CasbMailService implements MailService {
 		}
 		
 		
-		
-		//AishwaryaG
 		public String addEmailSentEntry(EmailModel emailModel, String emailType, String reqType, HttpServletRequest request) {
 			try {  
 				 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");  
@@ -295,7 +286,7 @@ public class CasbMailService implements MailService {
 		        CASBMAILSENTLOGGER.addHandler(fh);
 		        
 		        // the following statement is used to log any messages  
-		        CASBMAILSENTLOGGER.info("AFCAT : "+emailModel.getMailReason());  
+		        CASBMAILSENTLOGGER.info("CASB : "+emailModel.getMailReason());  
 		        CASBMAILSENTLOGGER.info("Date & Time : "+dtf.format(now)); 
 		        CASBMAILSENTLOGGER.info("Email Subject : "+emailModel.getEmailSubject()); 
 		        CASBMAILSENTLOGGER.info("Email Body : "+emailModel.getEmailContent());

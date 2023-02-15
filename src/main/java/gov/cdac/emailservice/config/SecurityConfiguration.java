@@ -52,7 +52,7 @@ public class SecurityConfiguration {
 	    		http.headers().frameOptions().sameOrigin();
 	    		 http
 		          .authorizeRequests()
-		          .antMatchers("/emailLogin", "/emailRegister", "/registerNewSeatAllocator").permitAll()
+		          .antMatchers("/emailLogin", "/emailRegister", "/registerNewAdmin").permitAll()
 		          .anyRequest()
 		          .authenticated()
 
