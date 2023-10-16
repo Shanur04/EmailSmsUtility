@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div th:fragment="scheduleData">
+		<div class="form-row " id="scheduleDateTime">
+			<div class="col-sm">
+				<div class="form-group">
+					<label style="padding-left: 0">Schedule <span
+						style="color: red; font-size: 22px;">*</span>
+					</label>
+
+					<div class="form-check form-check-inline">
+						<div class="custom-control custom-radio mb-3">
+							<input class="custom-control-input" type="radio"
+								name="isScheduled" id="scheduledYes"
+								onchange="makeDivEnabledOrDisabled('scheduleBlock', true)">
+							<label class="custom-control-label" for="scheduledYes">Yes</label>
+						</div>
+					</div>
+					<div class="form-check form-check-inline">
+						<div class="custom-control custom-radio mb-3">
+							<input class="custom-control-input" type="radio"
+								name="isScheduled" id="scheduledNo"
+								onchange="makeDivEnabledOrDisabled('scheduleBlock', false)"
+								checked> <label class="custom-control-label"
+								for="scheduledNo">No</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="border" id="scheduleBlock">
+			<div class="p-3">
+				<div class="row">
+					<div class="col-3">
+						<label><strong>From Date: </strong></label> <input type="date"
+							id="fromDate1" class="form-control" autocomplete="off">
+					</div>
+					<div class="col-3">
+						<label><strong>To Date: </strong></label> <input type="date"
+							id="toDate1" class="form-control" autocomplete="off">
+					</div>
+					<div class="col-3">
+						<button type="button" class="btn px-2 btn-info" style="position:absolute; bottom: 0; right: 0; margin-right:20px;"
+							th:onclick="toDateChange('btn1')">Add Time</button>
+					</div>
+					<div class="col-3">
+						<button type="button" class="btn px-2 btn-info" style="position:absolute; bottom: 0; left: 0;"
+							th:onclick="toDateChange('btn2')">Add Repeat Count</button>
+					</div>
+				</div>
+				<div id="sect1" class="row mt-5">
+					<div class="col-sm">
+						<div class="row">
+							<div class="col-3">
+								<label><strong>Time: </strong></label>
+
+							</div>
+							<div class="col-3">
+								<input type="time" id="addTime1" class="form-control" autocomplete="off">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm">
+						<button type="button" class=" btn btn-warning"
+							th:onclick="addDataToTable('sec1')">Add</button>
+					</div>
+				</div>
+				<div id="sect2" class="row mt-5 md-5">
+					<div class="col-3">
+						<div class="row">
+							<div class="col-sm-6">
+								<label><strong>Start Time: </strong></label>
+
+							</div>
+							<div class="col-sm-6">
+								<input type="time" id="addTime2" class="form-control" autocomplete="off">
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="row">
+							<div class="col-sm-6">
+								<label><strong>Repeat: </strong></label>
+							</div>
+							<div class="col-sm-6">
+								<input type="number" id="repeat" class="form-control" autocomplete="off">
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="row">
+							<div class="col-sm-6">
+								<label><strong>Delay: </strong></label>
+							</div>
+							<div class="col-sm-6">
+								<input type="number" id="delay" class="form-control" autocomplete="off">
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<button type="button" class="ml-3 btn btn-warning"
+							th:onclick="addDataToTable('sec2')">Add</button>
+					</div>
+				</div>
+				<div class="row m-3">
+					<div id="scheduledDataTable">
+						<table
+							class="table table-bordered table-hover table-striped text-center" id="scheduledDataTableId">
+							<thead>
+								<tr>
+									<th style='width: 5px;'>No.</th>
+									<th>Date</th>
+									<th>Time</th>
+									<th style='width: 5px;'>Action</th>
+								</tr>
+							</thead>
+							<tbody id="scheduleTableBody">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group pt-3 text-center form1Btn">
+			<button type="submit" id="quickSMSBtn1"
+				class="btn btn-danger"
+				th:formaction="@{${pageType} + '/sendSMS/1'}"
+				th:onclick="changeurl(1)">Send Quick SMS</button>
+			<div id="quickScheduleBtn" class="pu-2 form-group text-center">
+				<button type="submit" id="quickSMSBtn2"
+					class="btn btn-primary"
+					formaction="@{${pageType} + '/sendSMS/2'}"
+					th:onclick="changeurl(2)">Send Quick And Scheduled SMS</button>
+				<button type="submit" id="quickSMSBtn3"
+					class="btn btn-dark"
+					formaction="@{${pageType} + '/sendSMS/3'}"
+					th:onclick="changeurl(3)">Send Scheduled SMS</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

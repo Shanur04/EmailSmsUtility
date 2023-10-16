@@ -7,14 +7,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.4</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />
 	</parent>
 	<groupId>gov.cdac</groupId>
-	<artifactId>emailService</artifactId>
+	<artifactId>emailSmsService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>EmailService</name>
-	<description>EmailService</description>
+	<name>EmailSMSService</name>
+	<description>EmailSMSService</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
@@ -194,6 +194,6 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>EmailService</finalName>
+		<finalName>EmailSmsService</finalName>
 	</build>
 </project>

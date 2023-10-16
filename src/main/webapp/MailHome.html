@@ -116,7 +116,7 @@
 												style="font-size: large;">Bulk SMS by CSV</a>
 										</div>
 										<!-- Form submission -->
-										<form th:action="@{${pageType} + '/sendSMS/'}"
+										<form th:action="@{smsSent/${pageType} + '/sendSMS/'}"
 											th:object="${smsModel}" id="sendSMSForm" method="POST"
 											class="form" enctype="multipart/form-data">
 											<div class="tab-content" id="nav-tabContent">

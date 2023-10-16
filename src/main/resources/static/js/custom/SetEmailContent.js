@@ -278,7 +278,7 @@ $(document)
 							.click(
 									function(event) {
 
-										window.location.href = '../'
+										window.location.href = '../smsSent/'
 												+ $("#pageType").val()
 												+ '/bulkEmailWithExcelSheetForRejected';
 
@@ -297,30 +297,31 @@ function downloadExcel(scheduleId) {
 	console.log(scheduleId);
 	var token = $("meta[name='_csrf']").attr("content");
 
-	$.ajax({
-		type : 'GET',
-		url : '../' + pageType + '/downloadExcel/' + scheduleId,
-		traditional : true,
-		headers : {
-			'X-CSRF-TOKEN' : token
-		},
-		datatype : 'json',
-		beforeSend : function(xhr, s) {
-			$("#loading").show();
-		},
-		complete : function(xhr) {
-			$("#loading").fadeOut("slow");
-			console.log(xhr)
-			if (xhr.status != 200) {
-				$('#errorModalMessage').html('Something went wrong!');
-				$('#errorModal').modal();
-				return;
-			} else {
-				// $('#successModalMessage').html(xhr.responseText);
-				$('#successModal').modal();
-			}
-		}
-	});
+	window.location.href = '../' + pageType + '/downloadExcel/' + scheduleId;
+//	$.ajax({
+//		type : 'GET',
+//		url : '../' + pageType + '/downloadExcel/' + scheduleId,
+//		traditional : true,
+//		headers : {
+//			'X-CSRF-TOKEN' : token
+//		},
+//		datatype : 'json',
+//		beforeSend : function(xhr, s) {
+//			$("#loading").show();
+//		},
+//		complete : function(xhr) {
+//			$("#loading").fadeOut("slow");
+//			console.log(xhr)
+//			if (xhr.status != 200) {
+//				$('#errorModalMessage').html('Something went wrong!');
+//				$('#errorModal').modal();
+//				return;
+//			} else {
+//				// $('#successModalMessage').html(xhr.responseText);
+//				$('#successModal').modal();
+//			}
+//		}
+//	});
 }
 
 function searchByEmailId() {

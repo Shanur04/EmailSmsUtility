@@ -119,7 +119,7 @@ body {
   line-height: 1.5;
   color: #76838f;
   text-align: left;
-  background-color: #F3F3F9; }
+  background-color: #E6E6FA; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -2934,7 +2934,7 @@ input[type="button"].btn-block {
   .nav-tabs .nav-link.active,
   .nav-tabs .nav-item.show .nav-link {
     color: #fff;
-    background-color: #7571f9;
+    background-color: #b76fae;
     border-color: #dee2e6 #dee2e6 #F3F3F9; }
   .nav-tabs .dropdown-menu {
     margin-top: -1px;
@@ -2947,7 +2947,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #7571f9; }
+  background-color: #008080; }
 
 .nav-fill .nav-item {
   flex: 1 1 auto;
@@ -8144,8 +8144,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   top: 5rem;
   padding-top: 0;
   z-index: 99;
-  background: #fff;
-  transition: all .2s ease; }
+  background-color: white;
+  background-image:url('../images/Capture_2.JPG');
+  background-position: right;
+background-repeat: repeat-y;/*linear-gradient(231deg, #373e66 10%, #aeacf9 70%); */}
   @media only screen and (min-width: 1200px) and (max-width: 1350px) {
     .nk-sidebar {
       width: 14.375rem; } }
@@ -8163,7 +8165,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
     -ms-flex-direction: column;
     flex-direction: column;
     background: #fff; }
-    .nk-sidebar .metismenu > li {
+     {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -8172,9 +8174,11 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
       -ms-flex-direction: column;
       flex-direction: column;
       position: relative;
-      color: #464a53; }
+      color: #464a53; 
+     background-color: #66373f;}
       .nk-sidebar .metismenu > li > a {
-        transition: none; }
+        transition: none;
+        background-color: white; }
       .nk-sidebar .metismenu > li:hover i, .nk-sidebar .metismenu > li:focus i, .nk-sidebar .metismenu > li.active i {
         color: #464a53 !important; }
       .nk-sidebar .metismenu > li:hover span, .nk-sidebar .metismenu > li:focus span, .nk-sidebar .metismenu > li.active span {
@@ -8183,23 +8187,24 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         background: #F3F1FA;
         color: #7571f9; }
       .nk-sidebar .metismenu > li.active > a {
-        background: #F3F1FA;
-        color: #464a53; }
+        background: white;
+        color: black; }
       .nk-sidebar .metismenu > li.active ul a {
-        color: #464a53; }
+        color: black; }
       .nk-sidebar .metismenu > li a > i {
         font-size: 0.95rem;
         display: inline-block;
         vertical-align: middle;
         padding: 0 0.4375rem 0 0;
-        color: #464a53; }
+        color: black; 
+       }
     .nk-sidebar .metismenu a {
       position: relative;
       display: block;
       padding: 0.8125rem 1.25rem;
       outline-width: 0;
       transition: all .3s ease-out;
-      color: #464a53; }
+      color: black; }
     .nk-sidebar .metismenu ul a {
       padding: 0.625rem 0.9375rem 0.625rem 2.8125rem; }
     .nk-sidebar .metismenu ul ul a {
@@ -14010,7 +14015,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   padding-right: 15rem; }
 
 [data-nav-headerbg="color_1"] .nav-header {
-  background-color: #7571f9; }
+  background-color: #373e66; }
 
 [data-nav-headerbg="color_2"] .nav-header {
   background-color: #27394F !important; }
@@ -14040,7 +14045,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
   background-color: #558b2f !important; }
 
 [data-headerbg="color_1"] .header {
-  background-color: #fff; }
+  background-color: #373e66; }
 
 [data-headerbg="color_2"] .header, [data-headerbg="color_2"] .header-left input {
   background-color: #27394F !important;
@@ -14122,9 +14127,10 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
 [data-sibebarbg="color_1"] .nk-sidebar .metismenu {
   background-color: #fff; }
   [data-sibebarbg="color_1"] .nk-sidebar .metismenu > li {
-    color: #27394F; }
+    color: white;
+    background-color: black; }
     [data-sibebarbg="color_1"] .nk-sidebar .metismenu > li ul a {
-      color: #76838f; }
+      color: white; }
 
 [data-sibebarbg="color_2"] .nk-sidebar {
   background-color: #27394F !important; }
@@ -14698,5 +14704,7 @@ html[dir="rtl"] [direction="rtl"][data-sidebar-style="compact"]:not([data-layout
     background-color: #1b2b42; }
     [data-theme-version="dark"] .footer .copyright p {
       color: #fff; }
-
+.icon-menu {
+	color:white;
+}
 /*# sourceMappingURL=style.css.map */

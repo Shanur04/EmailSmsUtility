@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Configure Email</title>
 
-<link th:href="@{../css/style.css}" rel="stylesheet">
+<link th:href="@{../css/style-2.css}" rel="stylesheet">
 <link th:href="@{../css/uploadfile.css}" rel="stylesheet">
 <link rel="stylesheet"
 	th:href="@{../plugins/summernote/summernote-bs4.css}">
@@ -21,6 +21,10 @@
 <link th:href="@{/DataTables/css/jquery.dataTables.min.css}"
 	rel="stylesheet">
 <style>
+body {
+background-color: #fff;
+}
+
 .labler {
 	font-size: 1.2rem;
 	color: black;
@@ -42,8 +46,7 @@ th, td {
 .btn-danger {
 	background-color: #dc3535d1;
 }
-</style>
-<style type="text/css">
+
 #loading {
 	background: url('../images/email.gif') no-repeat center center;
 	background-color: #32323666;
@@ -68,6 +71,38 @@ th, td {
 .closeSearchByEmailId:hover {
 	background-color: maroon;
 }
+
+.animateCard {
+  position: relative;
+  display: inline-block;
+  animation: cardAnimation 1.5s ease-in-out forwards;
+  opacity: 0;
+  background-color: lavenderblush;
+}
+
+@keyframes cardAnimation {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animateCard:nth-child(2) {
+  animation-delay: 5s;
+}
+
+.animateCard:nth-child(3) {
+  animation-delay: 10s;
+}
+
+.animateCard:nth-child(4) {
+  animation-delay: 3s;
+}
+
 </style>
 </head>
 
@@ -94,7 +129,7 @@ th, td {
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-lg-3 col-xl-3">
-							<div class="card h-100">
+							<div class="card h-100 animateCard">
 								<div id="loading"></div>
 								<div class="card-body">
 									<div class="media align-items-center mb-4">
@@ -146,7 +181,7 @@ th, td {
 						</div>
 
 						<div class="col-lg-3 col-xl-3">
-							<div class="card h-100">
+							<div class="card h-100 animateCard">
 								<div class="card-body">
 									<div class="media align-items-center mb-4">
 										<!-- <img class="mr-3" src="images/avatar/11.png" width="80" height="80" alt=""> -->
@@ -192,7 +227,7 @@ th, td {
 						</div>
 
 						<div class="col-lg-3 col-xl-3">
-							<div class="card h-100">
+							<div class="card h-100 animateCard">
 								<div class="card-body">
 									<div class="media align-items-center mb-4">
 										<!-- <img class="mr-3" src="images/avatar/11.png" width="80" height="80" alt=""> -->
@@ -238,7 +273,7 @@ th, td {
 							</div>
 						</div>
 						<div class="col-lg-3 col-xl-3">
-							<div class="card h-100">
+							<div class="card h-100 animateCard">
 								<div class="card-body">
 									<div class="media align-items-center mb-4">
 										<!-- <img class="mr-3" src="images/avatar/11.png" width="80" height="80" alt=""> -->
@@ -286,7 +321,7 @@ th, td {
 				</div>
 			</div>
 			<div class="container-fluid">
-				<div class="row mt-5 p-5" style="background-image: linear-gradient(135deg, #EE9AE5 10%, #5961F9 100%);">
+				<div class="row mt-5 p-5" style="background-image:url(https://img.freepik.com/free-photo/white-baby-brea…nd-with-copy-space-writing-text_23-2148048520.jpg)">
 					<div class="col-lg-3 col-xl-3">
 						<div class="card h-100">
 							<div class="card-body">
