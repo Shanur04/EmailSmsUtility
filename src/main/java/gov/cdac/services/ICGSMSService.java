@@ -317,10 +317,13 @@ public class ICGSMSService implements SMSService {
 			SMSScheduleDetail.setSmsScheduleStatus(status);
 			icgSMSScheduleRepository.save(SMSScheduleDetail);
 
-			log.info("Sending message: " + SMSSent.getMessage());
+			log.info("Sending email To: " + mobileNoList);
+			
 
 			mobileNoList.forEach(number -> {
-				SMSSendService.sendSingleSMS(null, SMSSent, number, SMSSent.getTemplateMasterId());
+				String[] split = number.split(",");
+				System.out.println("number : "+split[0]+" , "+split[1]);
+				SMSSendService.sendSingleSMS(null, SMSSent, split[1], SMSSent.getTemplateMasterId());
 			});
 
 			generateReport(mobileNoList, appCredIds, smsSentId, smsScheduleId, SMSSent.getMessage(),

@@ -171,7 +171,6 @@ public class MailThreadExcel extends Thread {
 
 		for (String singleEmailFormHundred : onehundredSubset) {
 			emailId = singleEmailFormHundred;
-		
 			if (!MailServiceImpl.sendMailCenterWise(mailServerHost, mailServerPort, starttls, socketFactoryPort,
 					mailUserName, mailpassword, emailId, emailSubject, emailContent, fileArray, true,
 					emailAttachmentDirFromPropFile, null)) {
