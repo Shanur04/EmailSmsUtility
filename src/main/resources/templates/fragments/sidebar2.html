@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sidebar</title>
+<link rel="icon" type="image/png" sizes="16x16"
+	th:href="@{/images/favicon.png}">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:fragment="sidebar">
+		<div class="nk-sidebar">
+			<div class="nk-nav-scroll">
+				<ul class="metismenu" id="menu">
+					<li><a class="has-arrow" aria-expanded="false" th:href=@{../../smsSent/afcat}> 
+					<i class="icon-globe-alt menu-icon"></i><span class="nav-text">AFCAT</span>
+					</a></li>
+					<li><a class="has-arrow" aria-expanded="false" th:href=@{../../smsSent/casb}>
+							<i class="icon-globe-alt menu-icon"></i><span class="nav-text">CASB</span>
+					</a></li>
+					<li><a class="has-arrow" aria-expanded="false" th:href=@{../../smsSent/icg}>
+							<i class="icon-globe-alt menu-icon"></i><span class="nav-text">ICG</span>
+					</a></li>
+					<li><a class="has-arrow" aria-expanded="false" th:href=@{../../smsSent/icgOfficer}>
+							<i class="icon-globe-alt menu-icon"></i><span class="nav-text">ICG Officer</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

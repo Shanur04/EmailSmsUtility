@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name=" X-CSRF-TOKEN" th:content="${_csrf.headerName}" />
+<title>Configure Email</title>
+<!-- Favicon icon -->
+<link rel="icon" type="image/png" sizes="16x16"
+	th:href="@{../images/favicon.png}">
+<!-- Custom Stylesheet -->
+<link th:href="@{/css/style-2.css}" rel="stylesheet">
+<link th:href="@{/css/uploadfile.css}" rel="stylesheet">
+<link rel="stylesheet"
+	th:href="@{/plugins/summernote/summernote-bs4.css}">
+<link th:href="@{/css/bootstrap-multiselect.css}" rel="stylesheet">
+<link
+	th:href="@{/plugins/tables/css/datatable/dataTables.bootstrap4.min.css}"
+	rel="stylesheet">
+<style>
+.custom-content {
+	border: 1px solid #c1c1c161;
+	padding: 2rem;
+}
+</style>
+<style type="text/css">
+#loading {
+	background: url('../images/loader.gif') no-repeat center center;
+	background-color: #32323666;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 9999999;
+}
+
+.card .card-body {
+	padding: 1%;
+}
+</style>
+</head>
+<body>
+	<!--*******************
+         Preloader start
+         ********************-->
+	<div id="preloader">
+		<div class="loader">
+			<svg class="circular" viewBox="25 25 50 50">
+               <circle class="path" cx="50" cy="50" r="20" fill="none"
+					stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+		</div>
+	</div>
+	<!--*******************
+         Preloader end
+         ********************-->
+	<!--**********************************
+         Main wrapper start
+         ***********************************-->
+	<div id="main-wrapper">
+		<!--**********************************
+            Nav header start
+            ***********************************-->
+		<div class="nav-header">
+			<div class="brand-logo">
+				<a href="index.html"> <b class="logo-abbr"><img
+						src="images/logo.png" alt=""> </b> <span class="logo-compact"><img
+						src="./images/logo-compact.png" alt=""></span> <span
+					class="brand-title"> <img src="images/logo-text.png" alt="">
+				</span>
+				</a>
+			</div>
+		</div>
+		<!--*********************************
+            Nav header end
+            ***********************************-->
+		<!--**********************************
+            Header start
+            ***********************************-->
+		<div class="header">
+			<div class="header-content clearfix">
+				<div class="nav-control">
+					<div class="hamburger">
+						<span class="toggle-icon"><i class="icon-menu"></i></span>
+					</div>
+				</div>
+				<div class="header-right">
+					<ul class="clearfix">
+						<li class="icons dropdown">
+							<div class="user-img c-pointer position-relative"
+								data-toggle="dropdown">
+								<span class="activity active"></span> <img
+									th:src="@{/images/user/1.png}" height="40" width="40" alt="">
+							</div>
+							<div class="drop-down dropdown-profile   dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a href="page-login.html"><i class="icon-key"></i>
+												<span>Logout</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--**********************************
+            Header end ti-comment-alt
+            ***********************************-->
+		<!--**********************************
+            Sidebar start
+            ***********************************-->
+		<div class="nk-sidebar">
+			<div class="nk-nav-scroll">
+				<ul class="metismenu" id="menu">
+					<li><a class="has-arrow" href="../icg/viewConfigureBulkEmail"
+						aria-expanded="false"> <i class="icon-speedometer menu-icon"></i><span
+							class="nav-text">Dashboard</span>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--**********************************
+            Sidebar end
+            ***********************************-->
+		<!--**********************************
+            Content body start
+            ***********************************-->
+		<div class="content-body">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div id="loading"></div>
+							<div class="card-body">
+								<h4>Choose E-Mail Server</h4>
+								<div class="mb-3">
+									<div class="col-md-12 well rowCell">
+										<label>SMTP</label> <input type="radio"
+											name="emailServerTypeRadio" id="emailServerSMTP" value="smtp"
+											checked /> <label>SMTPB</label> <input type="radio"
+											value="smtpb" id="emailServerSMTPB"
+											name="emailServerTypeRadio" /> <label>SMTP-DR</label> <input
+											type="radio" id="emailServerSMTPDR" value="smtpdr"
+											name="emailServerTypeRadio" />
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-6">
+
+											<label for="breathingTime">E-mail Server Breathing
+												Time</label> <input type="text" class="form-control"
+												id="breathingTime" aria-describedby="breathingTime" required
+												placeholder="Enter Breathing Time in minutes">
+
+
+										</div>
+										<div class="col-6">
+											<div class="col-12 mb-3">
+												<label for="exampleInputEmail1">Total number of
+													E-mail per batch </label> <input type="text" class="form-control"
+													id="emailsPerBatch" aria-describedby="emailBatch" required
+													placeholder="Enter total number of Email's per batch">
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+								<div class="card-body">
+									<div class="mb-3">
+										<label for="exampleInputEmail1">Reason for Email</label> <input
+											type="text" class="form-control" id="mailReason"
+											aria-describedby="mailreason"
+											placeholder="Enter  reason for email" required>
+									</div>
+								</div>
+								<h4>Select Center and Slot</h4>
+								<div class="row">
+									<div class="col-4">
+										<div class="card-body ">
+											<div class="mb-3">
+												<label for="selectCenter">Select Center</label>
+												<div></div>
+												<select id="dropdownCenter" multiple="multiple" required>
+												</select>
+											</div>
+										</div>
+
+									</div>
+									<div class="col-4">
+										<div class="card-body">
+											<div class="mb-3">
+												<label for="selectSlot">Select Slot</label>
+												<div></div>
+												<select id="dropdownSlots" multiple="multiple" required>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="col-4">
+										<div class="card-body ">
+											<div class="mb-3">
+												<label for="selectSlot">Select Exam</label>
+												<div></div>
+												<select id="dropdownExam" required>
+													<option value="regularExam">Regular Exam</option>
+													<option value="reExam">Re-Exam</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<button type="button" class="btn btn-outline-primary"
+									id="candidateCount">Click On Above</button>
+								<hr>
+								<h4>Compose E-Mail</h4>
+								<div class="card-body ">
+									<div class="mb-3">
+										<label for="exampleInputEmail1">Email Subject</label> <input
+											type="text" class="form-control" id="mailSubject"
+											aria-describedby="emailSubject" required
+											placeholder="Enter email subject">
+									</div>
+								</div>
+								<div class="card-body ">
+									<div class="mb-3">
+										<label>Email Content</label>
+										<textarea required id="emailContent" class="textarea"
+											placeholder="Place some text here"
+											style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+									</div>
+								</div>
+								<div class="card-body ">
+									<div class="mb-3">
+										<label>Attachments</label>
+										<div id="fileuploader">Upload</div>
+									</div>
+								</div>
+								<div class="card-body ">
+									<div class="mb-3">
+										<label for="exampleInputEmail1">Send Admit Card as
+											attachment</label>
+										<div></div>
+										<label class="radio-inline"><input type="radio"
+											id="yesRadio" value="yes" required name="optradio">Yes</label>
+										<label class="radio-inline"><input type="radio"
+											id="noRadio" value="no" name="optradio">No</label>
+									</div>
+								</div>
+								<div class="text-left m-t-15">
+									<!-- <button id="btnSendBulkEmailWithAdmitCardAndOtherAttachments"
+										class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10"
+										type="button">
+										<i class="fa fa-paper-plane m-r-5"></i> Send
+									</button> -->
+
+
+									<!-- *********************** Scheduler *******************************  -->
+
+									<div class="form-row " id="scheduleDateTime">
+										<div class="col-sm">
+											<div class="form-group">
+												<label style="padding-left: 0">Schedule <span
+													style="color: red; font-size: 22px;">*</span>
+												</label>
+
+												<div class="form-check form-check-inline">
+													<div class="custom-control custom-radio mb-3">
+														<input class="custom-control-input" type="radio"
+															name="isScheduled" id="scheduledYes"
+															onchange="makeDivEnabledOrDisabled('scheduleBlock', true)">
+														<label class="custom-control-label" for="scheduledYes">Yes</label>
+													</div>
+												</div>
+												<div class="form-check form-check-inline">
+													<div class="custom-control custom-radio mb-3">
+														<input class="custom-control-input" type="radio"
+															name="isScheduled" id="scheduledNo"
+															onchange="makeDivEnabledOrDisabled('scheduleBlock', false)"
+															checked> <label class="custom-control-label"
+															for="scheduledNo">No</label>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="border" id="scheduleBlock">
+										<div class="p-3">
+											<div class="row ">
+												<div class="col-sm">
+													<div class="form-group">
+														<div class="row">
+															<div class="col-2">
+																<label><strong>From Date: </strong></label>
+															</div>
+															<div class="col">
+																<input type="date" id="fromDate1" class=""
+																	autocomplete="off">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-sm">
+													<button type="button" class="btn px-2 btn-info"
+														th:onclick="toDateChange('btn1')">Add Time</button>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm">
+													<div class="form-group">
+														<div class="row">
+															<div class="col-2">
+																<label><strong>To Date: </strong></label>
+															</div>
+															<div class="col">
+																<input type="date" id="toDate1" class=""
+																	autocomplete="off">
+															</div>
+														</div>
+
+													</div>
+												</div>
+												<div class="col-sm">
+													<button type="button" class="btn px-2 btn-info"
+														th:onclick="toDateChange('btn2')">Add Repeat
+														Count</button>
+												</div>
+											</div>
+											<div id="sect1" class="row">
+												<div class="col-sm">
+													<div class="row">
+														<div class="col-sm-2">
+															<label><strong>Time: </strong></label>
+
+														</div>
+														<div class="col-sm">
+															<input type="time" id="addTime1" class=""
+																autocomplete="off">
+														</div>
+													</div>
+												</div>
+												<div class="col-sm">
+													<button type="button" class=" btn btn-warning"
+														th:onclick="addDataToTable('sec1')">Add</button>
+												</div>
+											</div>
+											<div id="sect2" class="row mt-5 md-5">
+												<div class="col-sm">
+													<div class="row">
+														<div class="col-sm-3">
+															<label><strong>Start Time: </strong></label>
+
+														</div>
+														<div class="col-sm">
+															<input type="time" id="addTime2" class=""
+																autocomplete="off">
+														</div>
+													</div>
+												</div>
+												<div class="col-sm">
+
+													<div class="row">
+														<div class="col-sm-2">
+															<label><strong>Repeat: </strong></label>
+														</div>
+														<div class="col-sm">
+															<input type="number" id="repeat" class=""
+																autocomplete="off">
+														</div>
+													</div>
+												</div>
+												<div class="col-sm">
+													<div class="row">
+														<div class="col-sm-2">
+															<label><strong>Delay: </strong></label>
+														</div>
+														<div class="col-sm">
+															<input type="number" id="delay" class=""
+																autocomplete="off">
+														</div>
+													</div>
+												</div>
+												<div class="col-sm">
+													<button type="button" class="ml-3 btn btn-warning"
+														th:onclick="addDataToTable('sec2')">Add</button>
+												</div>
+											</div>
+											<div class="col-6">
+												<div id="scheduledDataTable">
+													<table class="form-group table table-bordered text-center">
+														<thead>
+															<tr>
+																<th>No.</th>
+																<th>Date</th>
+																<th>Time</th>
+																<th>Action</th>
+															</tr>
+														</thead>
+														<tbody id="scheduleTableBody">
+
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group pt-3 text-center form1Btn">
+										<button type="submit" id="quickSMSBtn1"
+											class="testEmailButton btn btn-rounded btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10"
+											th:formaction="@{${pageType} + '/sendTestEmails/1'}"
+											th:onclick="changeurl(1)">
+											<i class="fa fa-paper-plane m-r-5 m-l-2"></i> Send Quick
+											Email
+										</button>
+										<div id="quickScheduleBtn" class="pu-2 form-group text-center">
+											<button type="submit" id="quickSMSBtn2"
+												class="testEmailButton btn btn-rounded btn-danger m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10"
+												formaction="@{${pageType} + '/sendTestEmails/1'}"
+												th:onclick="changeurl(2)">
+												<i class="fa fa-paper-plane m-r-5 m-l-2"></i> Send Quick And
+												Scheduled Email
+											</button>
+											<button type="submit" id="quickSMSBtn3"
+												class="testEmailButton btn btn-rounded btn-success m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10"
+												formaction="@{${pageType} + '/sendTestEmails/1'}"
+												th:onclick="changeurl(3)">
+												<i class="fa fa-paper-plane m-r-5"></i> Send Scheduled Email
+											</button>
+										</div>
+									</div>
+									<button id="discard"
+										class="btn btn-dark m-b-30 m-t-15 f-s-14 p-l-20 p-r-20"
+										type="button">
+										<i class="ti-close m-r-5 f-s-12"></i> Discard
+									</button>
+								</div>
+							</div>
+							<!-- 	New Success Model -->
+							<div class="modal fade" id="successModal" tabindex="-1"
+								role="dialog" data-keyboard="false" data-backdrop="static"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 style="color: green" class="modal-title">
+												<i style="font-size: 20px;"
+													class="fas fa-check-circle fa-5x"></i>&nbsp;&nbsp; Success
+												!
+											</h4>
+											<img th:src="@{/images/logo_icg.png}" alt="" height="30">
+										</div>
+										<div class="modal-body" id="successModalMessage"></div>
+										<div class="modal-footer" style="padding: 0.4rem;">
+											<button data-dismiss="modal" class="btn btn-primary"
+												id="successModalOk">Ok</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 	End New Success Model -->
+							<!-- 	New Error Model -->
+							<div class="modal fade" id="errorModal" tabindex="-1"
+								role="dialog" data-keyboard="false" data-backdrop="static"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4 style="color: red" class="modal-title" id="myModalLabel">
+												<i style="font-size: 20px;" class="fas fa-info-circle fa-5x"></i>&nbsp;&nbsp;
+												Alert !
+											</h4>
+											<img th:src="@{/images/logo_icg.png}" alt="" height="20">
+										</div>
+										<div class="modal-body" id="errorModalMessage">
+											Some error Occurred !<br> Please login again.
+										</div>
+										<div class="modal-footer">
+											<a class="btn btn-secondary" id="ErrorModalClose"
+												data-dismiss="modal">Close</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- 	End New End Model -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- #/ container -->
+		</div>
+		<!--**********************************
+            Content body end
+            ***********************************-->
+	</div>
+	<!--**********************************
+         Main wrapper end
+         ***********************************-->
+	<!--**********************************
+         Scripts
+         ***********************************-->
+	<script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+	<script th:src="@{/plugins/common/common.min.js}"></script>
+	<script th:src="@{/js/custom.min.js}"></script>
+	<script th:src="@{/js/settings.js}"></script>
+	<script th:src="@{/js/gleek.js}"></script>
+	<script th:src="@{/js/styleSwitcher.js}"></script>
+	<script th:src="@{/js/jquery.uploadfile.js}"></script>
+	<script
+		th:src="@{/js/custom/BulkEmailWithAdmitCardAndOtherAttachments.js}"></script>
+	<script th:src="@{/js/bootstrap-multiselect.js}"></script>
+	<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
+	<script th:src="@{/js/jquery-ui.min.js}"></script>
+	<!--  js for rich text box -->
+	<script>
+		$(function() {
+			$('.textarea').summernote()
+		})
+	</script>
+</body>
+</html>

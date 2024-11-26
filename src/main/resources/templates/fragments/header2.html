@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Header</title>
+<link rel="icon" type="image/png" sizes="16x16"
+	th:href="@{/images/favicon.png}">
+<link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:fragment="header">
+		<div class="nav-header"></div>
+		<div class="header">
+			<div class="header-content clearfix">
+				<div class="nav-control">
+					<div class="hamburger">
+						<span class="toggle-icon"><i class="icon-menu"></i></span>
+					</div>
+				</div>
+				<div class="header-left">
+					<h3 style="margin-top: 24px; color:white;">SMS Service</h3>
+				</div>
+				<div class="header-right">
+					<ul class="clearfix">
+						<li class="icons dropdown">
+							<div class="user-img c-pointer position-relative"
+								data-toggle="dropdown">
+								<span class="activity active"></span> <img
+									th:src="@{/images/user/user1.png}" height="40" width="40" alt="">
+							</div>
+							<div class="drop-down dropdown-profile dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a th:href="@{/emailSmsLogout}"><i
+												class="icon-key"></i> <span>Logout</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
