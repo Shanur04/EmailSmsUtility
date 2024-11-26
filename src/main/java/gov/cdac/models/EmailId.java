@@ -1,10 +1,12 @@
 package gov.cdac.models;
 
 import java.util.List;
+import java.util.Map;
 
 public class EmailId {
 	
 	private String email_id;
+	private Map<String, String> colData;
 	private List<String> centerCode;
 	private List<String> slotCode;
 
@@ -30,6 +32,14 @@ public class EmailId {
 
 	public void setSlotCode(List<String> slotCode) {
 		this.slotCode = slotCode;
+	}
+
+	public Map<String, String> getColData() {
+		return colData;
+	}
+
+	public void setColData(Map<String, String> colData) {
+		this.colData = colData;
 	}
 
 	@Override

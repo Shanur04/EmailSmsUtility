@@ -2,7 +2,7 @@ package gov.cdac.icgPojo;
 
 import java.sql.Timestamp;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

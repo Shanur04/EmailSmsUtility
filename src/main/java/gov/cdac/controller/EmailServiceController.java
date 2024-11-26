@@ -17,11 +17,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
 import org.apache.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,6 +48,10 @@ import gov.cdac.models.ReportInfo;
 import gov.cdac.models.TestEmailBulkModel;
 import gov.cdac.services.FileUploadService;
 import gov.cdac.services.MailServiceFactory;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/")
@@ -108,7 +107,7 @@ public class EmailServiceController {
 		HttpSession session = request.getSession();
 		session = request.getSession();
 		session.setAttribute("emailId", auth.getName());
-		return new ModelAndView("bulkEmailWithAdmitCardsAndOtherAttachments").addAllObjects(mailServiceFactory.getPageData(reqType)); 
+		return new ModelAndView("bulkEmailWithCentreDetails").addAllObjects(mailServiceFactory.getPageData(reqType)); 
 	}
 	
 	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}/bulkEmailWithExcelSheet")
@@ -136,6 +135,15 @@ public class EmailServiceController {
 		session = request.getSession();
 		session.setAttribute("emailId", auth.getName());
 		return new ModelAndView("BulkEmailFromExcelForRejected").addAllObjects(mailServiceFactory.getPageData(reqType)); 
+	}
+	
+	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}/bulkEmailMultiDataWithExcelSheet")
+	public ModelAndView bulkEmailMultiDataWithExcelSheet(@PathVariable String reqType, Model model, Authentication auth, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session = request.getSession();
+		session.setAttribute("emailId", auth.getName());
+		System.out.println(auth.getName());
+		return new ModelAndView("BulkEmailMultiDataFromExcel").addAllObjects(mailServiceFactory.getPageData(reqType)); 
 	}
 	
 	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}/viewConfigureBulkEmail")

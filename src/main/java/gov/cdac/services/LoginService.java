@@ -2,9 +2,8 @@ package gov.cdac.services;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import gov.cdac.icgPojo.SystemUserCredential;
+import jakarta.validation.Valid;
 
 public interface LoginService {
 

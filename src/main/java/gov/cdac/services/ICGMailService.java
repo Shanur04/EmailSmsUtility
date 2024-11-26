@@ -26,10 +26,6 @@ import java.util.Map.Entry;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +62,9 @@ import gov.cdac.models.EmailModel;
 import gov.cdac.models.ReportInfo;
 import gov.cdac.models.TestEmailBulkModel;
 import gov.cdac.projection.EmailProjection;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Service("icgMailService")
 @PropertySource("classpath:mailCredentials.properties")
@@ -180,10 +179,8 @@ public class ICGMailService implements MailService {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss");
 
 		if (mainFile.isFile()) {
-			System.out.println("is File : "+mainFile.getName());
 
 			if (mainFile.getName().indexOf(".txt") > -1) {
-				System.out.println("text");
 				httpResponse.setContentType("text/plain");
 			}else {
 				FileInputStream in = new FileInputStream(mainFile);
@@ -230,7 +227,6 @@ public class ICGMailService implements MailService {
 			return;
 
 		}else {
-			System.out.println("Given path is a Directory path");
 			return;
 		}
 			
@@ -408,6 +404,7 @@ public class ICGMailService implements MailService {
 		}
 
 		List<String> emailIds = new ArrayList<>();
+		List<Map<String, String>> colData = new ArrayList<Map<String,String>>();
 		IcgEmailSent emailSent = null;
 
 		if (emailModel.getCenters() != null && emailModel.getSlots() != null) {
@@ -461,6 +458,9 @@ public class ICGMailService implements MailService {
 			if (emailModel.getObj() != null) {
 				for (int i = 0; i < emailModel.getObj().size(); i++) {
 					emailIds.add(emailModel.getObj().get(i).getEmail_id());
+					if(emailModel.getObj().get(i).getColData() != null) {
+						colData.add(emailModel.getObj().get(i).getColData());
+					}
 				}
 			} else {
 				emailIds = new ArrayList<String>(Arrays.asList(emailModel.getTestEmailIds().split(",")));
@@ -551,9 +551,13 @@ public class ICGMailService implements MailService {
 			}
 			if (emailModel.getSentType() == 1 || emailModel.getSentType() == 2) {
 				ICGMAILSENTLOGGER.info("Quick Mail");
-				
-				sendEmailAsync(emailIds, null,
+				if(colData != null && !colData.isEmpty()) {
+					sendEmailWithMultiDataAsync(colData, null, emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()));
+				} else {
+					sendEmailAsync(emailIds, null,
 						emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()));
+				}
+				
 			}else {
 				ICGMAILSENTLOGGER.info("Scheduled Mail");
 				
@@ -623,6 +627,29 @@ public class ICGMailService implements MailService {
 			e.printStackTrace();
 		}
 	}
+	
+	@Async
+	public void sendEmailWithMultiDataAsync(List<Map<String, String>> emailIdsAndData, List<Long> appCredIdList, Long emailScheduleDeailId) {
+		try {
+			IcgEmailScheduleDetail emailScheduleDetail = emailScheduleDetailRepository.findById(emailScheduleDeailId)
+					.get();
+			IcgEmailSent emailSent = emailSentRepository.findById(emailScheduleDetail.getEmailSent().getEmailSentId())
+					.get();
+
+			Thread thread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					cIMultipleWithMultiData(emailIdsAndData, emailSent.getCandidatesCount(),
+							emailSent.getEmailSentId(), emailScheduleDetail.getEmailScheduleDetailId());
+				}
+			});
+			thread.start();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	@Async
 	public void sendTestEmailsService(List<String> emailIdList, List<Long> appCredIdsFromFile, int candidatesCount,
@@ -790,6 +817,52 @@ public class ICGMailService implements MailService {
 //					e.printStackTrace();
 //				}
 //			}
+		}
+	}
+	
+	@Async
+	public void cIMultipleWithMultiData(List<Map<String, String>> emailIdList, int candidatesCount,
+			Long emailSentId, Long emailScheduleDeailId) {
+		IcgEmailScheduleDetail emailScheduleDetail = emailScheduleDetailRepository.findById(emailScheduleDeailId).get();
+		IcgEmailSent emailSent = emailSentRepository.findById(emailSentId).get();
+
+		ArrayList<File> fileArray = fileUploadService.findFiles(emailSentId, emailSent.getReqType());
+		emailScheduleDetailRepository.save(emailScheduleDetail);
+		notSentEmailIds.clear();
+		SentEmailIds.clear();
+
+		emailScheduleDetail.setEmailScheduleStatus(emailStatusRepository.findById(4L).get());
+		if (emailIdList.size() > 0) {
+			List<String> emailIds = new ArrayList<String>();
+
+			String emailContent = emailSent.getBody();
+			for (Map<String, String> emailIdcounter : emailIdList) {
+				for(Map.Entry<String, String> m: emailIdcounter.entrySet()) {
+					if(!m.getKey().equalsIgnoreCase("email_id")) {
+						emailSent.setBody(emailSent.getBody().replace(m.getKey(), m.getValue()));
+					}
+				}
+				emailIds.add(emailIdcounter.get("email_id"));
+				if (!MailServiceImpl.sendMailCenterWise("mailgw-dr.noida.cdac.in", "587", emailSent.getStarttls(), 
+						emailSent.getSocketFactoryPort(), mailUserName, mailPassword, (String)emailIdcounter.get("email_id"), emailSent.getSubject(),
+						emailSent.getBody(), fileArray, mailShouldBeSend, null, null)) {
+					centerWiseSendEmail.error("Mail Not Sent to : " + emailIdcounter.get("email_id") + " due to Exception");
+					
+				} 
+				emailSent.setBody(emailContent);
+			}
+				
+
+			centerWiseSendEmail.info("E-MAIL sending completed");
+
+			emailScheduleDetail.setEmailScheduleEndDate(new Timestamp(System.currentTimeMillis()));
+			emailScheduleDetail.setEmailScheduleStatus(emailStatusRepository.findById(1L).get());
+			emailSentRepository.save(emailSent);
+			emailScheduleDetailRepository.save(emailScheduleDetail);
+
+			generateReport(emailIds, null, emailSentId, emailScheduleDeailId, emailSent.getSubject(),
+					emailSent.getBody(), emailSent.getEmailSentType(), emailSent.getReqType());
+
 		}
 	}
 
@@ -1053,7 +1126,6 @@ public class ICGMailService implements MailService {
 //		ArrayList<String> emailIds = new ArrayList<>();
 //		testEmailBulkModel.getObj().forEach(email -> emailIds.add(email.getEmail_id()));
 //		session.setAttribute("totalCandidates", allEmailIdsAndHallTicketNumbers.size());
-		System.out.println("The Size Is " + allEmailWithReason.size());
 
 //		for (Map.Entry<String, String> email : allEmailWithReason.entrySet()) {
 //			System.out.println("enail " + email.getKey());

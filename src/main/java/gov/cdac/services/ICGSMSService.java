@@ -13,9 +13,6 @@ import java.util.Map;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +44,7 @@ import gov.cdac.models.SMSModel;
 import gov.cdac.models.SMSReasonMaster;
 import gov.cdac.models.SMSTemplateMaster;
 import gov.cdac.projection.CentreSlotCandidateCount;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Service("icgSMSService")
 public class ICGSMSService implements SMSService {

@@ -1,7 +1,7 @@
 package gov.cdac.icgPojo;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

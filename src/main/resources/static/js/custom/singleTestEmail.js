@@ -1,6 +1,7 @@
 var sentEmailType = ""
 
 $(document).ready(function () {
+	var token = $("meta[name='_csrf']").attr("content");
 
 	$("#loading").hide();	
 	$("#scheduleBlock").hide();
@@ -28,6 +29,9 @@ $(document).ready(function () {
 				    url: '../'+$("#pageType").val()+"/load",
 				    type:"POST",
 			    	dataType: "json",
+					headers : {
+						'X-CSRF-TOKEN' : token
+					},
 				    success: function(data) 
 				    {
 					    for(var i=0;i<data.length;i++)
@@ -72,12 +76,27 @@ $(document).ready(function () {
 		$('#mailSubject').val('');
 		$('#emailContent').val('');
 	});
+	
+	function getJwtFromCookies() {
+	    let name = "jwt=";
+	    let decodedCookie = decodeURIComponent(document.cookie);
+	    let ca = decodedCookie.split(';');
+		alert(ca)
+	    for (let i = 0; i < ca.length; i++) {
+	        let c = ca[i];
+	        while (c.charAt(0) === ' ') {
+	            c = c.substring(1);
+	        }
+	        if (c.indexOf(name) === 0) {
+	            return c.substring(name.length, c.length);
+	        }
+	    }
+	    return "";  // Return empty string if JWT is not found
+	}
 
 
 	$(".testEmailButton").on("click", function () {
-		
-		console.log("1")
-		
+				
 		$("#loading").show();
 		
 		var testEmailIds = [];
@@ -136,7 +155,6 @@ $(document).ready(function () {
 			});
 		}
 		
-		console.log("2")
 		var formData = new FormData();
 
 		formData.append("emailContent", emailContent);
@@ -156,7 +174,11 @@ $(document).ready(function () {
 			processData: false,
 			async: false,
 			url: '../'+$("#pageType").val()+'/sendTestEmails',
-			data: formData
+			data: formData,
+			headers : {
+				'X-CSRF-TOKEN' : token,
+				'Authorization': 'Bearer ' + getJwtFromCookies()
+			},
 		}).done(function (response) {
 			if (response === 'success') {
 				$("#loading").fadeOut("slow");

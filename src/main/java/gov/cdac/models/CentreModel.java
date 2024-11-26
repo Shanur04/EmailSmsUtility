@@ -17,9 +17,6 @@ public class CentreModel {
 	private Long totalCapacity;
 	private HashMap<String, Long> slotDetails;
 
-	
-
-	
 
 	public String getCandidateName() {
 		return candidateName;
@@ -37,7 +34,6 @@ public class CentreModel {
 		this.centreAddress = centreAddress;
 	}
 
-	
 	public String getPincode() {
 		return pincode;
 	}

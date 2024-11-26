@@ -2,7 +2,7 @@ package gov.cdac.icgOfficerPojo;
 
 
 import java.io.Serializable;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.sql.Timestamp;
 import java.util.List;

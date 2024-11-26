@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 
 import gov.cdac.services.MailServiceImpl;

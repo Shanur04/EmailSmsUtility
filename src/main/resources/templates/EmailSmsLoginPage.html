@@ -5,6 +5,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name=" X-CSRF-TOKEN" th:content="${_csrf.headerName}" />
 <title>Email Utility: Sign in</title>
 <!-- Favicon icon -->
 <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
@@ -38,45 +40,7 @@ h3, h4{
 	color:white;
 }
 </style>
-<script>
-     /*function RemoveSavedPassword() {
-         if (typeof  jQuery.support.webkit == "undefined") {
-             var inputValue = $('.real-input').val();
-             //alert(inputValue)
-             var numChars = inputValue.length;
-             var showText = "";
-        	for (var i = 0; i < numChars; i++) {
-            	showText += "&#8226;";
-        	}
-        	//this.setAttribute('readonly','readonly');
-        	//alert(showText)
-        	$('.fake-input').val(showText);
-    	}
- 	}*/
-
-      function RemoveSavedPassword(){
-    	 const togglePassword = document.getElementById('#togglePassword');
-    	 const password = document.getElementById('#password');
-        // toggle the type attribute
-        //const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        //password.setAttribute('type', type);
-        // toggle the eye slash icon
-        if($("#togglePassword").hasClass("fa-eye")){
-        	
-        	$("#password").css("-webkit-text-security", "none");
-            $("#togglePassword").removeClass('fa-eye');
-            $("#togglePassword").addClass('fa-eye-slash');
-
-        }else{
-        	$("#password").css("-webkit-text-security", "disc");
-            $("#togglePassword").removeClass('fa-eye-slash');
-            $("#togglePassword").addClass('fa-eye');
-        }
-       
-    }
-</script>
 </head>
-
 <body class="h-100" >
 
 	<!-- <div id="auth"> -->
@@ -160,4 +124,23 @@ h3, h4{
 		<script th:src="@{/js/crypto.js}"></script>
 <!--     	<script th:src="@{/js/signinForCaptcha.js}"></script>
  --></body>
+ <script>
+      function RemoveSavedPassword(){
+    	 const togglePassword = document.getElementById('#togglePassword');
+    	 const password = document.getElementById('#password');
+        // toggle the eye slash icon
+        if($("#togglePassword").hasClass("fa-eye")){
+        	
+        	$("#password").css("-webkit-text-security", "none");
+            $("#togglePassword").removeClass('fa-eye');
+            $("#togglePassword").addClass('fa-eye-slash');
+
+        }else{
+        	$("#password").css("-webkit-text-security", "disc");
+            $("#togglePassword").removeClass('fa-eye-slash');
+            $("#togglePassword").addClass('fa-eye');
+        }
+       
+    }
+</script>
 </html>

@@ -1,6 +1,6 @@
 package gov.cdac.icgPojo;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="sms_mobileno_excelsheet")

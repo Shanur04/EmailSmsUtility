@@ -8,12 +8,11 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 
 import gov.cdac.services.ApplicantHallTicketService;
 import gov.cdac.services.MailServiceImpl;
+import jakarta.servlet.http.HttpSession;
 
 public class MailThreaRejected extends Thread {
 

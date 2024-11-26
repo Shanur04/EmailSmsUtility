@@ -8,8 +8,6 @@ package gov.cdac.services;
 import java.sql.Timestamp;
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,6 +15,7 @@ import org.springframework.stereotype.Service;
 import gov.cdac.icgPojo.SystemUserCredential;
 import gov.cdac.icgPojo.UserRole;
 import gov.cdac.icgRepositories.SystemUserCredentialsRepository;
+import jakarta.validation.Valid;
 
 
 @Service("icgLoginService")

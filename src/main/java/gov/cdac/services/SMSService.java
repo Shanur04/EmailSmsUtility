@@ -7,13 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import gov.cdac.models.SMSModel;
 import gov.cdac.models.SMSReasonMaster;
 import gov.cdac.models.SMSTemplateMaster;
+import jakarta.servlet.http.HttpServletResponse;
 /**
  * 
  * @author shanurj

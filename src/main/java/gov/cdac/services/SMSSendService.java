@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.annotation.Resource;
 import javax.net.ssl.SSLContext;
 
 import org.apache.http.HttpResponse;
@@ -28,7 +27,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import gov.cdac.afcatPojo.AfcatApplicantCredential;
@@ -44,6 +42,7 @@ import gov.cdac.icgOfficerRepository.IcgOfficerSMSNotSentDetailsRepository;
 import gov.cdac.icgPojo.ApplicantCredential;
 import gov.cdac.icgPojo.SMSNotSentDetails;
 import gov.cdac.icgPojo.SMSSent;
+import jakarta.annotation.Resource;
 
 /**
  * @author Mobile Seva < msdp@cdac.in >

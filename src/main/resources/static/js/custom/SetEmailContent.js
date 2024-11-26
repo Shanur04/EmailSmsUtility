@@ -1,6 +1,7 @@
 $(document)
 		.ready(
 				function() {
+					var token = $("meta[name='_csrf']").attr("content");
 
 					$("#loading").hide();
 
@@ -57,6 +58,9 @@ $(document)
 								url : "populateTotalEmailSent",
 								async : false,
 								dataType : "json",
+								headers : {
+								    'X-CSRF-TOKEN' : token
+								},
 								success : function(response, textStatus,
 										request) {
 									$('#totalEmailSentForSingleTestEmail')
@@ -74,6 +78,9 @@ $(document)
 								"ajax" : {
 									"type" : "POST",
 									"url" : "populateDataTable",
+									headers : {
+										'X-CSRF-TOKEN' : token
+									},
 									"dataSrc" : function(response) {
 
 										var jsonObj = [];
@@ -124,6 +131,9 @@ $(document)
 								url : "populateTotalEmailSent",
 								async : false,
 								dataType : "json",
+								headers : {
+									'X-CSRF-TOKEN' : token
+								},
 								success : function(response, textStatus,
 										request) {
 									$('#totalEmailSentForEmailIdsFromExcel')
@@ -140,6 +150,9 @@ $(document)
 							$('#dataTableForPhotoNotFound').dataTable({
 								"ajax" : {
 									"type" : "POST",
+									"headers" : {
+										'X-CSRF-TOKEN' : token
+									},
 									"url" : "populateDataTable",
 									"dataSrc" : function(response) {
 										var jsonObj = [];
@@ -196,6 +209,9 @@ $(document)
 										url : "populateTotalEmailSent",
 										async : false,
 										dataType : "json",
+										headers : {
+											'X-CSRF-TOKEN' : token
+										},
 										success : function(response,
 												textStatus, request) {
 											$(
@@ -215,6 +231,9 @@ $(document)
 								"ajax" : {
 									"type" : "POST",
 									"url" : "populateDataTable",
+									headers : {
+										'X-CSRF-TOKEN' : token
+									},
 									"dataSrc" : function(response) {
 										var jsonObj = [];
 										for ( var a in response) {
@@ -283,7 +302,18 @@ $(document)
 												+ '/bulkEmailWithExcelSheetForRejected';
 
 									});
+					$("#bulkEmailMultiDataWithExcelSheet")
+					.click(
+							function(event) {
 
+								window.location.href = '../'
+										+ $("#pageType").val()
+										+ '/bulkEmailMultiDataWithExcelSheet';
+
+							});
+
+					
+					
 					$("#reportModalClose").click(function() {
 						$("#uploadDocTable tbody").empty();
 						$("#reportTable tbody").empty();

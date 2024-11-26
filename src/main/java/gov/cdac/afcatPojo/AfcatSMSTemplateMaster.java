@@ -1,9 +1,8 @@
 package gov.cdac.afcatPojo;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import gov.cdac.models.SMSTemplateMaster;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "sms_template_master")

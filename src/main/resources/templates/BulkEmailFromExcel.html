@@ -6,6 +6,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name=" X-CSRF-TOKEN" th:content="${_csrf.headerName}" />
 <title>Configure Email</title>
 
 <!-- Custom Stylesheet -->
@@ -610,7 +612,7 @@
 	<script th:src="@{/bulkUpload/cpexcel.js}"></script>
 	<script th:src="@{/bulkUpload/ods.js}"></script>
 	<script th:src="@{/bulkUpload/csv2json.js}"></script>
-	<script th:src="@{/bulkUpload/excel_to_json_converterCIMultiple.js}"></script>
+	<script th:src="@{/js/custom/excel_to_json_converterCIMultiple.js}"></script>
 </body>
 
 </html>

@@ -5,11 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +14,8 @@ import gov.cdac.models.CentreModel;
 import gov.cdac.models.EmailModel;
 import gov.cdac.models.ReportInfo;
 import gov.cdac.models.TestEmailBulkModel;
-import gov.cdac.projection.EmailReportSummary;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 

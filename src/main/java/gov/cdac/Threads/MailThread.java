@@ -7,8 +7,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 

@@ -27,7 +27,7 @@ public interface HallTicketRepository extends JpaRepository<ApplicantHallticket,
 	 * @param cityId
 	 * @return
 	 */
-	@Query("select hmp from ApplicantHallticket hmp where hmp.applicantCredential in (select ap.applicantCredential.applicantCredId from ApplicantCentreAllotment ap join ap.examCentreMapping ex where ex.centreExamslotMapping.centreExamslotMappingId in (select reg.centreExamslotMappingId from CentreExamslotMapping reg where reg.centreMaster.examCityMaster.examCityId= :cityId))")
+	@Query("select hmp from ApplicantHallticket hmp where hmp.applicantCredential.applicantCredId in (select ap.applicantCredential.applicantCredId from ApplicantCentreAllotment ap join ap.examCentreMapping ex where ex.centreExamslotMapping.centreExamslotMappingId in (select reg.centreExamslotMappingId from CentreExamslotMapping reg where reg.centreMaster.examCityMaster.examCityId= :cityId))")
 	public List<ApplicantHallticket> getHallTicketMapping(@Param("cityId") Integer cityId);
 	
 	/**

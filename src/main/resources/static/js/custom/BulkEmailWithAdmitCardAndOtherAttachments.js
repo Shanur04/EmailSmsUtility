@@ -33,9 +33,9 @@ $(document).ready(function () {
 		
 	});
 
-	populateSlots();
-
-	populateCenters();
+//	populateSlots();
+//
+//	populateCenters();
 
 
 	function populateSlots() {

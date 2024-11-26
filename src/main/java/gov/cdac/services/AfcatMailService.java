@@ -23,12 +23,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.FileHandler;
 import java.util.logging.SimpleFormatter;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
@@ -42,6 +43,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import gov.cdac.Threads.AfcatMailThread;
+import gov.cdac.Threads.CustomBarrier;
+import gov.cdac.Threads.EmailTask;
 import gov.cdac.Threads.MailThreaRejected;
 import gov.cdac.Threads.MailThreadExcel;
 import gov.cdac.afcatPojo.AfcatEmailAttachmentFileDetail;
@@ -66,6 +69,9 @@ import gov.cdac.models.EmailModel;
 import gov.cdac.models.ReportInfo;
 import gov.cdac.models.TestEmailBulkModel;
 import gov.cdac.projection.EmailProjection;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 @Service("afcatMailService")
@@ -353,6 +359,7 @@ public class AfcatMailService implements MailService {
 		
 		//*********************************************************//
 		List<String> emailIds = new ArrayList<>();
+		List<Map<String, String>> colData = new ArrayList<Map<String,String>>();
 		AfcatEmailSent emailSent = null;
 		if(emailModel.getCenters() != null && emailModel.getSlots() != null) {
 			String[] slotsArray = emailModel.getSlots().split(",");
@@ -398,9 +405,13 @@ public class AfcatMailService implements MailService {
 					emailModel.getEmailBreathingTime(), emailModel.getEmailsPerBatch()));
 		}else {
 			// *********************************************************//
+			
 			if (emailModel.getObj() != null) {
 				for (int i = 0; i < emailModel.getObj().size(); i++) {
 					emailIds.add(emailModel.getObj().get(i).getEmail_id());
+					if(emailModel.getObj().get(i).getColData() != null) {
+						colData.add(emailModel.getObj().get(i).getColData());
+					}
 				}
 			} else {
 				emailIds = new ArrayList<String>(Arrays.asList(emailModel.getTestEmailIds().split(",")));
@@ -488,8 +499,11 @@ public class AfcatMailService implements MailService {
 			
 			if(emailModel.getSentType() == 1 || emailModel.getSentType() == 2) {
 				AFCATMAILSENTLOGGER.info("Quick Mail");
-				
-				sendEmailAsync(emailIds, null, emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()));
+				if(colData != null && !colData.isEmpty()) {
+					sendEmailWithMultiDataAsync(colData, null, emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()));
+				} else {
+					sendEmailAsync(emailIds, null, emailScheduleDetailRepository.findFirstSchedulerByEmailSentId(emailSent.getEmailSentId()));
+				}
 			}else {
 				AFCATMAILSENTLOGGER.info("Scheduled Mail");
 				
@@ -539,8 +553,11 @@ public class AfcatMailService implements MailService {
 								emailSent.getStarttls(), emailSent.getExam().getExamName(), emailSent.getReasonForEmail(),
 								emailSent.getEmailBreathingTime(), emailSent.getEmailsPerBatch(), emailSent.getSocketFactoryPort(), emailSent.getEmailSentId(), emailScheduleDetail.getEmailScheduleDetailId());
 					}else {
-						cIMultiple(emailIdsFromFile, appCredIdsFromFile, emailSent.getCandidatesCount(),
-							emailSent.getEmailSentId(), emailScheduleDetail.getEmailScheduleDetailId());
+//						cIMultiple(emailIdsFromFile, appCredIdsFromFile, emailSent.getCandidatesCount(),
+//							emailSent.getEmailSentId(), emailScheduleDetail.getEmailScheduleDetailId());
+						
+						cIMultipleRunnable(emailIdsFromFile, appCredIdsFromFile, emailSent.getCandidatesCount(),
+								emailSent.getEmailSentId(), emailScheduleDetail.getEmailScheduleDetailId());
 					}
 				}
 			});
@@ -549,6 +566,28 @@ public class AfcatMailService implements MailService {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}		
+	}
+	
+	@Async
+	public void sendEmailWithMultiDataAsync(List<Map<String, String>> emailIdsAndData, List<Long> appCredIdList, Long emailScheduleDeailId) {
+		try {
+			AfcatEmailScheduleDetail emailScheduleDetail = emailScheduleDetailRepository.findById(emailScheduleDeailId)
+					.get();
+			AfcatEmailSent emailSent = emailSentRepository.findById(emailScheduleDetail.getEmailSent().getEmailSentId())
+					.get();
+
+			Thread thread = new Thread(new Runnable() {
+				@Override
+				public void run() {
+					cIMultipleWithMultiData(emailIdsAndData, emailSent.getCandidatesCount(),
+							emailSent.getEmailSentId(), emailScheduleDetail.getEmailScheduleDetailId());
+				}
+			});
+			thread.start();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Async
@@ -644,6 +683,7 @@ public class AfcatMailService implements MailService {
 							centerWiseSendEmail.info("oneHundredSubSetOfMap.size() : " + oneHundredSubset.size());
 							
 							//host : smtp.cdac.in | port : 25
+							//"mailgw-dr.noida.cdac.in","587"
 							mailThreadArray[arrayIndex] = new MailThreadExcel("mailgw-dr.noida.cdac.in",
 									"587", emailSent.getStarttls(),
 									emailSent.getSocketFactoryPort(), mailUserName, mailPassword,
@@ -713,6 +753,81 @@ public class AfcatMailService implements MailService {
 				//}
 			//}
 		
+		}
+	}
+	
+	@Async
+	public void cIMultipleRunnable(List<String> emailIdList, List<Long> appCredIdsFromFile, int candidatesCount, Long emailSentId, Long emailScheduleDeailId) {
+		AfcatEmailScheduleDetail emailScheduleDetail = emailScheduleDetailRepository.findById(emailScheduleDeailId).get();
+		AfcatEmailSent emailSent = emailSentRepository.findById(emailSentId).get();
+		
+		ArrayList<File> fileArray = fileUploadService.findFiles(emailSentId, emailSent.getReqType());
+		emailScheduleDetailRepository.save(emailScheduleDetail);
+		notSentEmailIds.clear();
+		SentEmailIds.clear();
+		
+		emailScheduleDetail.setEmailScheduleStatus(emailStatusRepository.findById(4L).get());
+
+		if (emailIdList.size() > 0) {
+	        long totalStartTime = System.currentTimeMillis();
+
+	        AtomicInteger emailCounter = new AtomicInteger(0);
+
+	        // Custom barrier to synchronize threads
+	        CustomBarrier barrier = new CustomBarrier(10, () -> {
+	            try {
+	                System.out.println("All active threads sleeping for 1 minutes.");
+	                TimeUnit.MINUTES.sleep(1);
+	            } catch (InterruptedException e) {
+	                Thread.currentThread().interrupt();
+	                System.err.println("Barrier action interrupted: " + e.getMessage());
+	            }
+	        });
+	        
+	        // CountDownLatch to ensure all threads wait until the required number of emails are sent
+	        CountDownLatch latch = new CountDownLatch(10);
+
+	        // AtomicInteger to track active threads
+	        AtomicInteger activeThreads = new AtomicInteger(10);
+			
+			// Create a fixed thread pool with 10 threads
+	        ExecutorService executor = Executors.newFixedThreadPool(10);
+
+	        // Divide the list into chunks and submit tasks
+	        int chunkSize = emailIdList.size() / 10;
+	        for (int i = 0; i < 10; i++) {
+	            int start = i * chunkSize;
+	            int end = (i == 9) ? emailIdList.size() : (i + 1) * chunkSize;
+	            List<String> chunk = emailIdList.subList(start, end);
+	            Runnable task = new EmailTask("mailgw-dr.noida.cdac.in",
+						"587", emailSent.getStarttls(),
+						emailSent.getSocketFactoryPort(), mailUserName, mailPassword,
+						emailSent.getSubject(), emailSent.getBody(),
+						chunk, fileArray, emailAttachmentDirFromPropertyFile+emailSentId+File.separator,
+						emailSent.getReasonForEmail(), emailCounter, barrier, latch, activeThreads);
+	            executor.submit(task);
+	        }
+
+	        // Shutdown the executor service
+	        executor.shutdown();
+	        try {
+	            if (!executor.awaitTermination(60, TimeUnit.MINUTES)) {
+	                executor.shutdownNow();
+	            }
+	        } catch (InterruptedException e) {
+	            executor.shutdownNow();
+	        }
+	        
+	        long totalEndTime = System.currentTimeMillis();
+	        System.out.println("Total execution time: " + (totalEndTime - totalStartTime) + " milliseconds");
+			
+			emailScheduleDetail.setEmailScheduleEndDate(new Timestamp(System.currentTimeMillis()));
+			emailScheduleDetail.setEmailScheduleStatus(emailStatusRepository.findById(1L).get());
+			emailSentRepository.save(emailSent);
+			emailScheduleDetailRepository.save(emailScheduleDetail);
+
+			generateReport(emailIdList, appCredIdsFromFile, emailSentId, emailScheduleDeailId,
+					emailSent.getSubject(), emailSent.getBody(), emailSent.getEmailSentType(), emailSent.getReqType());
 		}
 	}
 	
@@ -1076,6 +1191,52 @@ public class AfcatMailService implements MailService {
 		session.setAttribute("host", testEmailBulkModel.getMailServerHost());
 		return new ResponseEntity<>(true, HttpStatus.OK);
 	}
+	
+	@Async
+	public void cIMultipleWithMultiData(List<Map<String, String>> emailIdList, int candidatesCount,
+			Long emailSentId, Long emailScheduleDeailId) {
+		AfcatEmailScheduleDetail emailScheduleDetail = emailScheduleDetailRepository.findById(emailScheduleDeailId).get();
+		AfcatEmailSent emailSent = emailSentRepository.findById(emailSentId).get();
+
+		ArrayList<File> fileArray = fileUploadService.findFiles(emailSentId, emailSent.getReqType());
+		emailScheduleDetailRepository.save(emailScheduleDetail);
+		notSentEmailIds.clear();
+		SentEmailIds.clear();
+
+		emailScheduleDetail.setEmailScheduleStatus(emailStatusRepository.findById(4L).get());
+		if (emailIdList.size() > 0) {
+			List<String> emailIds = new ArrayList<String>();
+
+			String emailContent = emailSent.getBody();
+			for (Map<String, String> emailIdcounter : emailIdList) {
+				for(Map.Entry<String, String> m: emailIdcounter.entrySet()) {
+					if(!m.getKey().equalsIgnoreCase("email_id")) {
+						emailSent.setBody(emailSent.getBody().replace(m.getKey(), m.getValue()));
+					}
+				}
+				emailIds.add(emailIdcounter.get("email_id"));
+				if (!MailServiceImpl.sendMailCenterWise("mailgw-dr.noida.cdac.in", "587", emailSent.getStarttls(), 
+						emailSent.getSocketFactoryPort(), mailUserName, mailPassword, (String)emailIdcounter.get("email_id"), emailSent.getSubject(),
+						emailSent.getBody(), fileArray, mailShouldBeSend, null, null)) {
+					centerWiseSendEmail.error("Mail Not Sent to : " + emailIdcounter.get("email_id") + " due to Exception");
+					
+				} 
+				emailSent.setBody(emailContent);
+			}
+				
+
+			centerWiseSendEmail.info("E-MAIL sending completed");
+
+			emailScheduleDetail.setEmailScheduleEndDate(new Timestamp(System.currentTimeMillis()));
+			emailScheduleDetail.setEmailScheduleStatus(emailStatusRepository.findById(1L).get());
+			emailSentRepository.save(emailSent);
+			emailScheduleDetailRepository.save(emailScheduleDetail);
+
+			generateReport(emailIds, null, emailSentId, emailScheduleDeailId, emailSent.getSubject(),
+					emailSent.getBody(), emailSent.getEmailSentType(), emailSent.getReqType());
+
+		}
+	}
 
 	@Override
 	public ResponseEntity<?> sendMultipleEmailOfRejected(TestEmailBulkModel testEmailBulkModel,
@@ -1412,7 +1573,6 @@ public class AfcatMailService implements MailService {
 
 	@Override
 	public List<CentreModel> populateListOfCentres() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

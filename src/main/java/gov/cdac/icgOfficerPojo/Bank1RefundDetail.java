@@ -2,7 +2,7 @@ package gov.cdac.icgOfficerPojo;
 
 
 import java.io.Serializable;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.sql.Timestamp;
 
 

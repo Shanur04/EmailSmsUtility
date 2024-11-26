@@ -6,6 +6,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name=" X-CSRF-TOKEN" th:content="${_csrf.headerName}" />
 <title>Configure Email</title>
 
 <link th:href="@{../css/style-2.css}" rel="stylesheet">
@@ -107,10 +109,10 @@ th, td {
 </head>
 
 <body>
-	<div th:insert="fragments/preloader::preloader"></div>
+	<div th:insert="~{fragments/preloader::preloader}"></div>
 	<div id="main-wrapper">
-		<div th:insert="fragments/header::header"></div>
-		<div th:insert="fragments/sidebar::sidebar"></div>
+		<div th:insert="~{fragments/header::header}"></div>
+		<div th:insert="~{fragments/sidebar::sidebar}"></div>
 
 
 		<div class="content-body">
@@ -179,7 +181,6 @@ th, td {
 								</div>
 							</div>
 						</div>
-
 						<div class="col-lg-3 col-xl-3">
 							<div class="card h-100 animateCard">
 								<div class="card-body">
@@ -278,16 +279,16 @@ th, td {
 									<div class="media align-items-center mb-4">
 										<!-- <img class="mr-3" src="images/avatar/11.png" width="80" height="80" alt=""> -->
 										<div class="media-body">
-											<h3 class="mb-0">Send Duplicate Rejected Email</h3>
+											<h3 class="mb-0">Send Email with Different content</h3>
+											</br>
 										</div>
 									</div>
-
 									<div class="row mb-5">
 										<div class="col">
 											<div class="card card-profile text-center">
 												<span class="mb-1 text-primary"><i
 													class="icon-people"></i></span>
-												<h3 class="mb-0" id="totalCandidatesForSingleRejectedEmail"></h3>
+												<h3 class="mb-0" id="totalCandidatesForEmailMultiDataFromExcel"></h3>
 												<p class="text-muted px-4">Candidates</p>
 											</div>
 										</div>
@@ -295,24 +296,24 @@ th, td {
 											<div class="card card-profile text-center">
 												<span class="mb-1 text-warning"><i
 													class="icon-user-follow"></i></span>
-												<h3 class="mb-0" id="totalEmailSentForSingleRejectedEmail"></h3>
+												<h3 class="mb-0" id="totalEmailSentForEmailMultiDataFromExcel"></h3>
 												<p class="text-muted">Email Sent</p>
 											</div>
 										</div>
 										<div class="col-12 text-center">
-											<button id="singleRejectedEmail" class="btn btn-danger px-5">Configure
-												Email</button>
+											<button type="button" id="bulkEmailMultiDataWithExcelSheet" 
+												class="btn btn-danger px-5">Configure Email</button>
 										</div>
 									</div>
 
 									<h4>About Email</h4>
 									<p class="text-muted">Use this option when you want to send
-										email to duplicate candidate i.e rejected.</p>
+										an email using email ID's in excel file</p>
 									<ul class="card-profile__info">
 										<li class="mb-1"><strong class="text-dark mr-4">Using</strong>
-											<span id="hostInSingleEmail"></span></li>
+											<span id="hostInBulkExcelEmailMultiData"></span></li>
 										<li><strong class="text-dark mr-4">Attachment</strong> <span
-											id="attachmentsInSingleEmail"></span></li>
+											id="attachmentsInBulkExcelEmailMultiData"></span></li>
 									</ul>
 								</div>
 							</div>
@@ -576,7 +577,7 @@ th, td {
 	</div>
 
 	<!-- #/ container -->
-	<div th:insert="fragments/footer::footer"></div>
+	<div th:insert="~{fragments/footer::footer}"></div>
 	
 	<script th:src="@{/js/jquery-ui.min.js}"></script>
 	<script th:src="@{/plugins/common/common.min.js}"></script>

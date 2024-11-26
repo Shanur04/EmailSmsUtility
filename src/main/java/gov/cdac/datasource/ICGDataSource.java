@@ -7,7 +7,7 @@ package gov.cdac.datasource;
 
 import java.util.Properties;
 
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -56,7 +56,7 @@ public class ICGDataSource extends HikariConfig {
 		setPackagesToScan("gov.cdac.icgPojo");
 		setJpaProperties(new Properties() {
 		    {
-			put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL10Dialect");
+			put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 			put("show-sql", "true");
 		    }
 		});

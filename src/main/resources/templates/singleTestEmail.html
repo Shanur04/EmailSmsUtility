@@ -6,6 +6,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="_csrf" th:content="${_csrf.token}" />
+<meta name=" X-CSRF-TOKEN" th:content="${_csrf.headerName}" />
 <title>Configure Email</title>
 
 <!-- Custom Stylesheet -->
@@ -359,14 +361,6 @@
 
 
 									<!-- ****************************************************** -->
-
-									<!-- <div class="text-left m-t-15">
-										<button id="testEmailButton"
-											class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10"
-											type="button">
-											<i class="fa fa-paper-plane m-r-5"></i> Send
-										</button>
-									-->
 									<button id="discard"
 										class="btn btn-dark m-b-30 m-t-15 f-s-14 p-l-20 p-r-20"
 										type="button">

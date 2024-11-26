@@ -35,6 +35,9 @@ $(document)
 								    url: "../"+$("#pageType").val()+"/load",
 								    type:"POST",
 							    	dataType: "json",
+									headers : {
+										'X-CSRF-TOKEN' : token
+									},
 								    success: function(data) 
 								    {
 									    for(var i=0;i<data.length;i++) { 

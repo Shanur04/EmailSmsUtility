@@ -9,16 +9,18 @@ package gov.cdac.icgOfficerPojo;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 /**
  *
@@ -26,7 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "phase2_admit_card")
-@XmlRootElement
+@JacksonXmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Phase2AdmitCard.findAll", query = "SELECT p FROM Phase2AdmitCard p"),
     @NamedQuery(name = "Phase2AdmitCard.findByApplicantPhase2Regno", query = "SELECT p FROM Phase2AdmitCard p WHERE p.applicantPhase2Regno = :applicantPhase2Regno"),
