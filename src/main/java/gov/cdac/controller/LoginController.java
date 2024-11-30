@@ -113,7 +113,6 @@ public class LoginController {
             // Generate JWT token
             String jwt = jwtService.generateJwtToken(authentication);
 
-            System.out.println("authenticateUser : jwt : "+jwt);
             // Add JWT token to response header (Authorization)
             response.addHeader("Authorization", "Bearer " + jwt);
 
@@ -133,13 +132,13 @@ public class LoginController {
 
     @GetMapping("/emailOrSms")
     public ModelAndView emailHomePage(Authentication auth, HttpServletRequest request, HttpServletResponse response) {
+    	String jwt = null;
         try {
-            // Get JWT from cookie
-            String jwt = null;
+            // Attempt to get the JWT token from the request (first from the cookie, then from the header)
             Cookie[] cookies = request.getCookies();
-
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
+                	
                     if ("jwt".equals(cookie.getName())) {
                         jwt = cookie.getValue();
                         break;
@@ -147,12 +146,11 @@ public class LoginController {
                 }
             }
 
-            // If no JWT in cookies, try the Authorization header
+            // If no cookie, try header
             if (jwt == null) {
                 jwt = jwtService.getJwtFromRequestHeader(request);
             }
 
-            System.out.println("jwt : "+jwt+"\njwtService.validateToken(jwt):"+jwtService.validateToken(jwt));
             // If JWT exists and is valid
             if (jwt != null && jwtService.validateToken(jwt)) {
                 // Extract username from JWT
@@ -162,7 +160,7 @@ public class LoginController {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
                 // Create an authentication token and set it to the SecurityContext
-                UsernamePasswordAuthenticationToken authentication = 
+                UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
                 // Set authentication in SecurityContextHolder
@@ -170,13 +168,15 @@ public class LoginController {
 
                 // Return the home page after successful authentication
                 return new ModelAndView("MailOrSmsHome"); // Ensure this is the correct view name
+            } else {
+                // JWT is invalid, redirect to login page
+                return new ModelAndView("redirect:/emailSmsLogin");
             }
         } catch (Exception e) {
             e.printStackTrace();
+            // In case of any errors (e.g., invalid token, failed authentication), redirect to login page
+            return new ModelAndView("redirect:/emailSmsLogin");
         }
-
-        // If JWT is invalid or not present, redirect to login page
-        return new ModelAndView("redirect:/emailSmsLogin");
     }
 	
 	/**
