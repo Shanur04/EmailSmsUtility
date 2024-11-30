@@ -93,7 +93,7 @@ public class EmailServiceController {
 	
 	@GetMapping("{reqType:icg|casb|afcat|icgOfficer}")
 	public ModelAndView emailHomePage(@PathVariable String reqType) {
-		//Mail Home fetched now
+		//Mail Home fetched now shanur branch
 		return new ModelAndView("MailHome").addAllObjects(mailServiceFactory.getPageData(reqType));
 	}
 	
