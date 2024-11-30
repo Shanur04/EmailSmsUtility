@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.header.writers.StaticHeadersWriter;
@@ -25,6 +26,9 @@ public class WebSecurityConfigJWT {
 
 	@Autowired
 	private AuthEntryPointJwt unauthorizedHandler;
+	
+	@Autowired
+	private UrlAuthenticationSuccessHandler urlAuthenticationSuccessHandler;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -63,7 +67,7 @@ public class WebSecurityConfigJWT {
 	        .loginProcessingUrl("/emailSmsLogin")  // Form action URL
 	        .failureUrl("/emailSmsLogin?error=true")
 	        .defaultSuccessUrl("/emailOrSms", true) // Redirect to /emailOrSms after successful login
-	        .permitAll());
+	        .successHandler(urlAuthenticationSuccessHandler));
 
 	    http.logout(logout -> logout
 	        .logoutUrl("/logout")
